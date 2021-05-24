@@ -13,94 +13,52 @@ class ResponseSuccess(BaseModel):
     success: bool
 
 
-class PostTypeQA(str, Enum):
-    question = 'question'
-    answer = 'answer'
+class Role(str, Enum):
+    student = 'student'
+    teacher = 'teacher'
 
 
-class PostType(str, Enum):
-    question = 'question'
-    answer = 'answer'
-    comment = 'comment'
+# class CommentIn(BaseModel):
+#     author: str = Field('name', min_length=2, max_length=64)
+#     body: str = Field('text', min_length=3)
+#
+#
+# class QuestionIn(BaseModel):
+#     author: str = Field('name', min_length=2, max_length=64)
+#     title: str = Field('header')
+#     body: str = Field('text', min_length=3)
+#     tags: Optional[str] = None
 
 
-class VoteType(str, Enum):
-    upvote = 'upvote'
-    downvote = 'downvote'
-
-
-class CommentIn(BaseModel):
-    author: str = Field('name', min_length=2, max_length=64)
-    body: str = Field('text', min_length=3)
-
-
-class QuestionIn(BaseModel):
-    author: str = Field('name', min_length=2, max_length=64)
-    title: str = Field('header')
-    body: str = Field('text', min_length=3)
-    tags: Optional[str] = None
-
-
-class AnswerIn(BaseModel):
-    author: str = Field('name', min_length=2, max_length=64)
-    body: str = Field('text', min_length=3)
-
-
-class CommentOut(BaseModel):
+class EventIn(BaseModel):
     id: int = 1
-    question_id: Optional[int] = 1
-    answer_id: Optional[int] = 1
-    author: str = 'name'
-    body: str = 'text'
-    created_at: datetime
-    score: int = 0
-    score_data: Optional[bool] = None
+    start: datetime
+    end: datetime
+    name: str = 'IT practice'
+    color: str = '#696969'
+    aud: str = '1-337'
+    link: Optional[str] = 'https://google.com'
+    teacher: str = 'Васильев С.С.'
+    module_name: str = 'HardCORE'
+    theme: str = 'IT introduction'
+    group_name: str = 'IT1'
 
 
-class QuestionOut(BaseModel):
+class EventOut(BaseModel):
     id: int = 1
-    author: str = 'name'
-    title: str = 'header'
-    body: str = 'text'
-    tags: Optional[str] = None
-    created_at: datetime
-    score: int = 0
-    score_data: Optional[bool] = None
-    comments: Optional[List[CommentOut]]
-    comments_count: Optional[int]
+    start: datetime
+    end: datetime
+    name: str = 'IT practice'
+    color: str = '#696969'
+    aud: str = '1-337'
+    link: Optional[str] = 'https://google.com'
+    teacher: str = 'Васильев С.С.'
+    module_name: str = 'HardCORE'
+    theme: str = 'IT introduction'
+    group_name: str = 'IT1'
 
 
-class AnswerOut(BaseModel):
+class UserOut(BaseModel):
     id: int = 1
-    question_id: int = 1
-    author: str = 'name'
-    body: str = 'text'
-    created_at: datetime
-    score: int = 0
-    score_data: Optional[bool] = None
-    comments: List[CommentOut]
-    comments_count: int = 10
+    role: Role
 
-
-class VoteOut(BaseModel):
-    id: int = 1
-    question_id: Optional[int] = 1
-    answer_id: Optional[int] = 1
-    comment_id: Optional[int] = 1
-    user_hash: str
-    like: bool
-
-
-class Comments(BaseModel):
-    comments: List[CommentOut]
-    count: int = 10
-
-
-class Questions(BaseModel):
-    questions: List[QuestionOut]
-    count: int = 10
-
-
-class Answers(BaseModel):
-    answers: List[AnswerOut]
-    count: int = 10
