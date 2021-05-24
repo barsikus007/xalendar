@@ -30,7 +30,7 @@ class Role(str, Enum):
 #     tags: Optional[str] = None
 
 
-class EventIn(BaseModel):
+class EventIn(BaseModel):  # TODO meeting
     id: int = 1
     start: datetime
     end: datetime

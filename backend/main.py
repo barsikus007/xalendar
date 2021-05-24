@@ -6,6 +6,8 @@ from fastapi import FastAPI, Request, Path, Query, Form
 from fastapi.exceptions import HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse, StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # from config import DB_AUTH, TOKEN
 # from db import Database as Db
@@ -24,8 +26,25 @@ app = FastAPI(
     # root_path='/xalendar'
 )
 
-app.mount("/", StaticFiles(directory="static", html=True), name="static")
+# app.mount('/calendar', StaticFiles(directory='static', html=True), name='static')
 # app.mount('/static', StaticFiles(directory='static'), name='static')
+origins = [
+    'http://localhost:3000',
+    'localhost:3000',
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*']
+)
+
+
+@app.get('/', include_in_schema=False)
+async def read_root() -> dict:
+    return {'message': 'Welcome to your todo list.'}
 
 
 def get_user_hash(request: Request):
@@ -62,7 +81,7 @@ async def get_users(
 @app.get('/api/v1/events', response_model=List[EventOut], tags=['events'])
 async def get_events(
         id_: int = Query(..., alias='id'),
-        from_: str = Query(..., alias='from', description='01.01.2021'),
+        from_: str = Query(..., alias='from', description='01.01.2021'),  # TODO non-required
         to_: str = Query(..., alias='to', description='07.01.2021')
 ):
     """Get events of the user for specified dates"""
@@ -82,20 +101,16 @@ async def patch_event(
         event: EventIn,
 ):
     """Update existing event"""
-    return 'WIP'
+    return {'WIP': 'WIP'}
 
 
-@app.get('/api/v1/groups', response_model=List[str], tags=['groups'])
-async def get_groups(
-        id_: int,
-        from_: str = Query(..., title='01.01.2021'),
-        to_: str = Query(..., title='07.01.2021')
-):
-    """Get groups of the user for specified dates"""
-    return [
-        'Мел',
-        'неМел',
-    ]
+@app.get('/api/v1/meetings', response_model=Dict[int, str], tags=['meetings'])
+async def get_meetings():
+    """Get all meetings"""
+    return {
+        1: 'Мел',
+        2: 'неМел',
+    }
 
 
 if __name__ == '__main__':
