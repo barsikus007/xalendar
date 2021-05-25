@@ -26,25 +26,8 @@ app = FastAPI(
     # root_path='/xalendar'
 )
 
-# app.mount('/calendar', StaticFiles(directory='static', html=True), name='static')
+app.mount('/calendar', StaticFiles(directory='build', html=True), name='build')
 # app.mount('/static', StaticFiles(directory='static'), name='static')
-origins = [
-    'http://localhost:3000',
-    'localhost:3000',
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=['*'],
-    allow_headers=['*']
-)
-
-
-@app.get('/', include_in_schema=False)
-async def read_root() -> dict:
-    return {'message': 'Welcome to your todo list.'}
 
 
 def get_user_hash(request: Request):
