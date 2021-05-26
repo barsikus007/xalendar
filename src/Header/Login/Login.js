@@ -6,7 +6,7 @@ let imageClick = () => {
 }
 
 return(
-  <div className="section-header__login">
+  <div className="header__login">
     <h3>Иванов И.И</h3>
     <img src={icon} onClick={() => imageClick()} alt="icon"/>
   </div>

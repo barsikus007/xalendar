@@ -1,6 +1,6 @@
 export default function Selector(){
   return(
-    <div className="section-header__selector">
+    <div className="header__selector">
       <label>
         <select defaultValue={'DEFAULT'}>
           <option value="1">День</option>
