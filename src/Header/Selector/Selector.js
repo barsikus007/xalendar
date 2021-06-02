@@ -4,7 +4,7 @@ export default function Selector(props){
   }
 
   return(
-    <div className="section-header__selector">
+    <div className="header__selector">
       <label>
         <select defaultValue={'DEFAULT'} onChange={handleChange}>
           <option value="week">Неделя</option>
