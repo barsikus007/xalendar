@@ -1,6 +1,7 @@
 .calendar {
   display: flex;
   flex-direction: column;
+  position: relative;
   //idk
   //font-size: 14px;
   //padding: 0 40px;
@@ -30,7 +31,11 @@
   }
 
   &-week{
-    height: calc(100vh - 100px);
+    //position: absolute;
+    width: 100%;
+    min-height: 90vh;
+    height: 100%;
+    overflow: auto;
   }
 
   &-header{
@@ -100,4 +105,6 @@
   color: white;
   background-color: black;
   border: 3px solid blue;
+  padding: 1px;
+  border-radius: 10px
 }

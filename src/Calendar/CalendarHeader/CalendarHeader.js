@@ -2,13 +2,13 @@ export default function CalendarHeader(props) {
   return (
     <div className="calendar-header">
       <div className="calendar-header-day calendar-gutter">___</div>
-      <div className="calendar-header-day">Mon</div>
-      <div className="calendar-header-day">Thu</div>
-      <div className="calendar-header-day">Wed</div>
-      <div className="calendar-header-day">Thu</div>
-      <div className="calendar-header-day">Fri</div>
-      <div className="calendar-header-day">Sat</div>
-      <div className="calendar-header-day">Sun</div>
+      <div className="calendar-header-day"><div>Mon</div></div>
+      <div className="calendar-header-day"><div>Thu</div></div>
+      <div className="calendar-header-day"><div>Wed</div></div>
+      <div className="calendar-header-day"><div>Thu</div></div>
+      <div className="calendar-header-day"><div>Fri</div></div>
+      <div className="calendar-header-day"><div>Sat</div></div>
+      <div className="calendar-header-day"><div>Sun</div></div>
     </div>
   )
 }

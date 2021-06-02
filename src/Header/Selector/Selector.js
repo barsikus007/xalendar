@@ -1,11 +1,15 @@
-export default function Selector(){
+export default function Selector(props){
+  function handleChange(e) {
+    props.setType(e.target.value)
+  }
+
   return(
     <div className="header__selector">
       <label>
-        <select defaultValue={'DEFAULT'}>
-          <option value="1">День</option>
-          <option value="2">Неделя</option>
-          <option value="3">Месяц</option>
+        <select defaultValue={'DEFAULT'} onChange={handleChange}>
+          <option value="week">Неделя</option>
+          <option value="day">День</option>
+          <option value="month">Месяц</option>
         </select>
       </label>
     </div>
