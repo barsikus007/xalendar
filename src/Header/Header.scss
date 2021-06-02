@@ -1,19 +1,19 @@
 .header {
-
+  position: fixed;
   top: 0;
   width: 100%;
   background: #342E2E;
+
   &-wrapper{
     display: flex;
-    align-items: center;
     justify-content: space-around;
-    flex-direction: row;
+    align-items: center;
   }
   &__title{
-
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     h3{
       color:white;
       margin-left: 30px;
@@ -30,7 +30,7 @@
   }
   &__selector{
     align-self: auto;
-    flex-direction: row;
+    align-items: center;
     select{
       outline: none;
       color: #E56353;
@@ -42,29 +42,80 @@
       font-weight: bold;
       border-radius: 5px;
       padding-left: 10px;
+
     }
   }
 
   &__login{
-    align-items: center;
+
     display: flex;
+    /* flex-flow: column wrap;*/
 
     h3 {
       color:white;
       margin-left: 15px;
       font-family: 'Open Sans', sans-serif;
-    }
-    img{
+      flex: 100%;
+      left: -10;
 
+
+    }
+    &__icon{
+      margin-left: 15px;
       width: 67px;
       height: 67px;
       border-radius:50%;
       border: 3px solid #544D4D;
 
+
     }
+    &__menu__inactive{
+      display: none;
 
+    }
+    &__menu__active {
+      li {list-style-type: none;
+        margin: 35px 0 0;
+        padding-left: 120px;
+
+      }
+      position: absolute;
+      width: 470px;
+      height: 380px;
+      right: 100px;
+      top: 97px;
+      background: #342E2E;
+      box-shadow: 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+
+      h2{
+        font-family: Roboto, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 28px;
+        color: #FFFFFF;
+        padding-left: 15px;
+      }
+
+      img{
+        border-radius:50%;
+        border: 3px solid #544D4D;
+        height: 160px;
+      }
+      button{
+        background-color: #342E2E;
+        border-color: #dadce0;
+        color: #FFFFFF;
+        font-weight: bold;
+        font-size: 24px;
+        text-align: center;
+        text-decoration: none;
+        margin-left: 65px;
+        padding: 8px 16px;
+      }
+    }
   }
-
 }
 @media only screen and (min-width: 786px){
 
