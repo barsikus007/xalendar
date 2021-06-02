@@ -1,13 +1,12 @@
-import { useState } from 'react'
+// import { useState } from 'react'
+import Timeslot from '../Timeslot/Timeslot'
+import EventContainer from "../EventContainer/EventContainer";
 
-export default function Day() {
-  const [type, setType] = useState('week');
-  // setType('week')
-  if (type === 'week') {
-    return (
-      <div className="day">
-        day
-      </div>
-    )
-  }
+export default function Day(props) {
+  return (
+    <div className="calendar-day">
+      {Array.from({length: 24}, (x, n) => <Timeslot />)}
+      <EventContainer />
+    </div>
+  )
 }
