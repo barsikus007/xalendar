@@ -6,11 +6,12 @@ import Month from "./Month/Month";
 import Pagination from "./Pagination/Pagination";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import EventService from "../Service";
+import Timetable from "./Timetable/Timetable";
 
 
 Date.prototype.yyyymmdd = function() {
   return this.toISOString().slice(0, 10)
-};
+}
 
 
 Date.prototype.getWeek = function(offset=0) {
@@ -22,34 +23,39 @@ Date.prototype.getWeek = function(offset=0) {
   return [mon.yyyymmdd(), sun.yyyymmdd()]
 }
 
+Date.prototype.getWeekDay = function() {
+  const weekDays = [
+    "Sun",
+    "Mon",
+    "Thu",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+  ]
+  return weekDays[this.getDay()]
+}
+
 export default function Calendar(props) {
   const [offset, setOffset] = useState(0);
   const now_date = new Date()
   const [start, end] = now_date.getWeek(offset)
-  console.log(start, end)
+  let calendar
   if (props.type === 'week') {
-    return (
-      <div className="calendar">
-        <Pagination offset={offset} offsetHook={setOffset}/>
-        <CalendarHeader />
-        <Week start={start} end={end}/>
-      </div>
-    )
+    calendar = <Week start={start} end={end}/>
   } else if (props.type === 'month') {
-    return (
-      <div className="calendar">
-        <Pagination offset={offset} offsetHook={setOffset}/>
-        <CalendarHeader />
-        <Month />
-      </div>
-    )
+    calendar = <Month />
   } else if (props.type === 'day') {
-    return (
-      <div className="calendar">
-        <Pagination offset={offset} offsetHook={setOffset}/>
-        <CalendarHeader />
-        <Day />
-      </div>
-    )
+    calendar = [
+      <Timetable />,
+      <Day date={now_date.yyyymmdd()}/>,
+    ]
   }
+  return (
+    <div className="calendar">
+      <Pagination offset={offset} offsetHook={setOffset}/>
+      <CalendarHeader type={props.type} start={start} end={end}/>
+      {calendar}
+    </div>
+  )
 }

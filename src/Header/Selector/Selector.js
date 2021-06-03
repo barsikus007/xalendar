@@ -1,5 +1,5 @@
 export default function Selector(props){
-  function handleChange(e) {
+  const handleChange = (e) => {
     props.setType(e.target.value)
   }
 
