@@ -42,7 +42,7 @@ export default function Calendar(props) {
   const [start, end] = now_date.getWeek(offset)
   let calendar
   if (props.type === 'week') {
-    calendar = <Week start={start} end={end}/>
+    calendar = <Week start={start} end={end} key={start+end}/>
   } else if (props.type === 'month') {
     calendar = <Month />
   } else if (props.type === 'day') {

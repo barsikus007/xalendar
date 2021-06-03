@@ -10,15 +10,9 @@ export default function Week(props) {
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [items, setItems] = useState([])
-  const [start, setStart] = useState(props.start)
-  const [end, setEnd] = useState(props.end)
 
   useEffect(() => {
-    if (!(props.start === start && props.end === end)) {
-      // setItems([])
-      setIsLoaded(false)
-      setStart(props.start)
-      setEnd(props.end)
+    if (!isLoaded) {
       fetch(`https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`)
         .then(res => res.json())
         .then(
@@ -33,7 +27,7 @@ export default function Week(props) {
         )
     }
   })
-  console.log([error, isLoaded, items])
+
   let dateMon = new Date(props.start)
   let dateTue = new Date(props.start)
   dateTue.setDate(dateMon.getDate()+1)
@@ -49,7 +43,7 @@ export default function Week(props) {
   dateSun.setDate(dateMon.getDate()+6)
 
   if (error) {
-      console.error('ERROR')
+      console.error('ERROR TODO POP-IT')
       return (
         <div className="calendar-week">
           <Timetable />
@@ -63,7 +57,6 @@ export default function Week(props) {
         </div>
       )
   } else if (!isLoaded) {
-      // setItems([])
       return (
         <div className="calendar-week">
           <Timetable />
@@ -88,11 +81,10 @@ export default function Week(props) {
       }
       Array.from(items).forEach((event) => {
         if (event.message) {
-          return;
+          return
         }
         eventsByDate[event.date].push(event)
       })
-      // setItems([])
       return (
         <div className="calendar-week">
           <Timetable />
