@@ -1,10 +1,9 @@
 import Day from "../Day/Day";
 import Timetable from "../Timetable/Timetable";
 import {Component, useState, useEffect} from "react";
+import moment from "moment";
+// require('moment/locale/ru');
 
-Date.prototype.yyyymmdd = function() {
-  return this.toISOString().slice(0, 10)
-}
 
 export default function Week(props) {
   const [error, setError] = useState(null)
@@ -26,76 +25,49 @@ export default function Week(props) {
           }
         )
     }
+    return () => {
+      setIsLoaded(true)
+    }
   })
-
-  let dateMon = new Date(props.start)
-  let dateTue = new Date(props.start)
-  dateTue.setDate(dateMon.getDate()+1)
-  let dateWed = new Date(props.start)
-  dateWed.setDate(dateMon.getDate()+2)
-  let dateThu = new Date(props.start)
-  dateThu.setDate(dateMon.getDate()+3)
-  let dateFri = new Date(props.start)
-  dateFri.setDate(dateMon.getDate()+4)
-  let dateSat = new Date(props.start)
-  dateSat.setDate(dateMon.getDate()+5)
-  let dateSun = new Date(props.start)
-  dateSun.setDate(dateMon.getDate()+6)
-
+  const eventsByDate = {}
+  const week = []
+  for (const x of Array(7).keys()) {
+    const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+    eventsByDate[dat] = []
+    week.push(<Day date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+  }
   if (error) {
       console.error('ERROR TODO POP-IT')
       return (
         <div className="calendar-week">
           <Timetable />
-          <Day date={dateMon} events={[]} name="Monday" />
-          <Day date={dateTue} events={[]} name="Tuesday" />
-          <Day date={dateWed} events={[]} name="Wednesday" />
-          <Day date={dateThu} events={[]} name="Thursday" />
-          <Day date={dateFri} events={[]} name="Friday" />
-          <Day date={dateSat} events={[]} name="Saturday" />
-          <Day date={dateSun} events={[]} name="Sunday" />
+          {week}
         </div>
       )
   } else if (!isLoaded) {
       return (
         <div className="calendar-week">
           <Timetable />
-          <Day date={dateMon} events={[]} name="Monday" />
-          <Day date={dateTue} events={[]} name="Tuesday" />
-          <Day date={dateWed} events={[]} name="Wednesday" />
-          <Day date={dateThu} events={[]} name="Thursday" />
-          <Day date={dateFri} events={[]} name="Friday" />
-          <Day date={dateSat} events={[]} name="Saturday" />
-          <Day date={dateSun} events={[]} name="Sunday" />
+          {week}
         </div>
       )
   } else {
-      const eventsByDate = {
-        [dateMon.yyyymmdd()]: [],
-        [dateTue.yyyymmdd()]: [],
-        [dateWed.yyyymmdd()]: [],
-        [dateThu.yyyymmdd()]: [],
-        [dateFri.yyyymmdd()]: [],
-        [dateSat.yyyymmdd()]: [],
-        [dateSun.yyyymmdd()]: [],
+    Array.from(items).forEach((event) => {
+      if (event.message) {
+        return
       }
-      Array.from(items).forEach((event) => {
-        if (event.message) {
-          return
-        }
-        eventsByDate[event.date].push(event)
-      })
-      return (
-        <div className="calendar-week">
-          <Timetable />
-          <Day date={dateMon} events={eventsByDate[dateMon.yyyymmdd()]} name="Monday" />
-          <Day date={dateTue} events={eventsByDate[dateTue.yyyymmdd()]} name="Tuesday" />
-          <Day date={dateWed} events={eventsByDate[dateWed.yyyymmdd()]} name="Wednesday" />
-          <Day date={dateThu} events={eventsByDate[dateThu.yyyymmdd()]} name="Thursday" />
-          <Day date={dateFri} events={eventsByDate[dateFri.yyyymmdd()]} name="Friday" />
-          <Day date={dateSat} events={eventsByDate[dateSat.yyyymmdd()]} name="Saturday" />
-          <Day date={dateSun} events={eventsByDate[dateSun.yyyymmdd()]} name="Sunday" />
-        </div>
-      )
+      eventsByDate[event.date].push(event)
+    })
+    const week = []
+    for (const x of Array(7).keys()) {
+      const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+      week.push(<Day date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+    }
+    return (
+      <div className="calendar-week">
+        <Timetable />
+        {week}
+      </div>
+    )
   }
 }
