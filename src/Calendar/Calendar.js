@@ -7,41 +7,53 @@ import Pagination from "./Pagination/Pagination";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 // import EventService from "../Service";
 import Timetable from "./Timetable/Timetable";
+import moment from "moment";
 
 
-const yyyymmdd = function(date) {
-  return date.toISOString().slice(0, 10)
+const getWeek = function(date, offset) {
+  return [
+    moment(date).add(offset, 'weeks').startOf('isoWeek').format('YYYY-MM-DD'),
+    moment(date).add(offset, 'weeks').endOf('isoWeek').format('YYYY-MM-DD')
+  ]
 }
 
-
-const getWeek = function(date, offset=0) {
-  const tmp_date = new Date(date)
-  tmp_date.setDate(tmp_date.getDate()-tmp_date.getDay()+(7*offset)+1)
-  const mon = new Date(tmp_date)
-  tmp_date.setDate(tmp_date.getDate()+6)
-  const sun = new Date(tmp_date)
-  return [yyyymmdd(mon), yyyymmdd(sun)]
+const getMonth = function(date, offset) {
+  const startOfMonth = moment(date).add(offset, 'months').startOf('month').format('YYYY-MM-DD')
+  const endOfMonth = moment(date).add(offset, 'months').endOf('month').format('YYYY-MM-DD')
+  return [
+    moment(startOfMonth).startOf('isoWeek').format('YYYY-MM-DD'),
+    moment(endOfMonth).endOf('isoWeek').format('YYYY-MM-DD')
+  ]
 }
 
 export default function Calendar(props) {
   const [offset, setOffset] = useState(0);
-  const now_date = new Date()
-  const [start, end] = getWeek(now_date, offset)
+  const nowDate = moment().format('YYYY-MM-DD')
   let calendar
   if (props.type === 'week') {
-    calendar = <Week start={start} end={end} key={start+end}/>
+    const [start, end] = getWeek(nowDate, offset)
+    calendar = [
+      <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
+      <Week start={start} end={end} key={start+end}/>
+    ]
   } else if (props.type === 'month') {
-    calendar = <Month />
+    const [start, end] = getMonth(nowDate, offset)
+    calendar = [
+        <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
+        <Month />
+    ]
   } else if (props.type === 'day') {
     calendar = [
-      <Timetable />,
-      <Day date={yyyymmdd(now_date)}/>,
+      <CalendarHeader key={props.type} type={props.type} start={moment().add(offset, 'days').format('YYYY-MM-DD')} end={moment().add(offset, 'days').format('YYYY-MM-DD')}/>,
+      <div className="calendar-week">
+        <Timetable />
+        <Day date={moment().add(offset, 'days').format('YYYY-MM-DD')} standalone={true} />
+      </div>
     ]
   }
   return (
     <div className="calendar">
-      <Pagination offset={offset} offsetHook={setOffset}/>
-      <CalendarHeader type={props.type} start={start} end={end}/>
+      <Pagination name={'June'} offset={offset} offsetHook={setOffset}/>
       {calendar}
     </div>
   )
