@@ -34,7 +34,7 @@ export default function Week(props) {
   for (const x of Array(7).keys()) {
     const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
     eventsByDate[dat] = []
-    week.push(<Day date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+    week.push(<Day key={dat} date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
   }
   if (error) {
       console.error('ERROR TODO POP-IT')
@@ -61,7 +61,7 @@ export default function Week(props) {
     const week = []
     for (const x of Array(7).keys()) {
       const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-      week.push(<Day date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+      week.push(<Day key={dat}  date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
     }
     return (
       <div className="calendar-week">

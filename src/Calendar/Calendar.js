@@ -23,19 +23,6 @@ Date.prototype.getWeek = function(offset=0) {
   return [mon.yyyymmdd(), sun.yyyymmdd()]
 }
 
-Date.prototype.getWeekDay = function() {
-  const weekDays = [
-    "Sun",
-    "Mon",
-    "Thu",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-  ]
-  return weekDays[this.getDay()]
-}
-
 export default function Calendar(props) {
   const [offset, setOffset] = useState(0);
   const now_date = new Date()
