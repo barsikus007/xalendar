@@ -5,28 +5,28 @@ import Week from "./Week/Week";
 import Month from "./Month/Month";
 import Pagination from "./Pagination/Pagination";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
-import EventService from "../Service";
+// import EventService from "../Service";
 import Timetable from "./Timetable/Timetable";
 
 
-Date.prototype.yyyymmdd = function() {
-  return this.toISOString().slice(0, 10)
+const yyyymmdd = function(date) {
+  return date.toISOString().slice(0, 10)
 }
 
 
-Date.prototype.getWeek = function(offset=0) {
-  const tmp_date = new Date(this)
+const getWeek = function(date, offset=0) {
+  const tmp_date = new Date(date)
   tmp_date.setDate(tmp_date.getDate()-tmp_date.getDay()+(7*offset)+1)
   const mon = new Date(tmp_date)
   tmp_date.setDate(tmp_date.getDate()+6)
   const sun = new Date(tmp_date)
-  return [mon.yyyymmdd(), sun.yyyymmdd()]
+  return [yyyymmdd(mon), yyyymmdd(sun)]
 }
 
 export default function Calendar(props) {
   const [offset, setOffset] = useState(0);
   const now_date = new Date()
-  const [start, end] = now_date.getWeek(offset)
+  const [start, end] = getWeek(now_date, offset)
   let calendar
   if (props.type === 'week') {
     calendar = <Week start={start} end={end} key={start+end}/>
@@ -35,7 +35,7 @@ export default function Calendar(props) {
   } else if (props.type === 'day') {
     calendar = [
       <Timetable />,
-      <Day date={now_date.yyyymmdd()}/>,
+      <Day date={yyyymmdd(now_date)}/>,
     ]
   }
   return (

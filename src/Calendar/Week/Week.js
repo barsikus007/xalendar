@@ -1,6 +1,6 @@
 import Day from "../Day/Day";
 import Timetable from "../Timetable/Timetable";
-import {Component, useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import moment from "moment";
 // require('moment/locale/ru');
 
