@@ -1,29 +1,13 @@
 import moment from "moment";
-import Day from "../Day/Day";
-
-Date.prototype.getWeekDay = function() {
-  const weekDays = [
-    "Sun",
-    "Mon",
-    "Thu",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-  ]
-  return weekDays[this.getDay()]
-}
-
-Date.prototype.yyyymmdd = function() {
-  return this.toISOString().slice(0, 10)
-}
 
 export default function CalendarHeader(props) {
   let header = []
-  const start = new Date(props.start)
   if (props.type === 'day') {
     header = [
-      <div className="calendar-header-day"><div>{start.getWeekDay()}</div></div>
+      <div className="calendar-header-day">
+        <div>{moment(props.start).format('ddd')}</div>
+        <div>{moment(props.start).format('DD')}</div>
+      </div>
     ]
   } else if (props.type === 'week'){
     for (const x of Array(7).keys()) {
