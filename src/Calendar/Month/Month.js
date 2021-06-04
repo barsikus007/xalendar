@@ -39,41 +39,35 @@ export default function Month(props) {
     eventsByWeek[start] = []
     month.push(<MonthWeek events={eventsByWeek[start]} start={start} end={end} />)
   }
-  return (
-    <div>{month}</div>
-  )
-  // if (error) {
-  //     console.error('ERROR TODO POP-IT')
-  //     return (
-  //       <div className="calendar-week">
-  //         <Timetable />
-  //         {week}
-  //       </div>
-  //     )
-  // } else if (!isLoaded) {
-  //     return (
-  //       <div className="calendar-week">
-  //         <Timetable />
-  //         {week}
-  //       </div>
-  //     )
-  // } else {
-  //   Array.from(items).forEach((event) => {
-  //     // if (event.message) {
-  //     //   return
-  //     // }
-  //     eventsByDate[event.date].push(event)
-  //   })
-  //   const week = []
-  //   for (const x of Array(7).keys()) {
-  //     const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-  //     week.push(<Day key={dat}  date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
-  //   }
-  //   return (
-  //     <div className="calendar-week">
-  //       <Timetable />
-  //       {week}
-  //     </div>
-  //   )
-  // }
+  if (error) {
+      console.error('ERROR TODO POP-IT')
+      return (
+        <div className="calendar-week">
+          {month}
+        </div>
+      )
+  } else if (!isLoaded) {
+      return (
+        <div className="calendar-week">
+          {month}
+        </div>
+      )
+  } else {
+    Array.from(items).forEach((event) => {
+      // if (event.message) {
+      //   return
+      // }
+      eventsByWeek[event.date].push(event)
+    })
+    month.length = 0
+    for (const x of Array(7).keys()) {
+      const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+      month.push(<MonthWeek key={dat}  date={dat} events={eventsByWeek[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+    }
+    return (
+      <div className="calendar-month">
+        {month}
+      </div>
+    )
+  }
 }

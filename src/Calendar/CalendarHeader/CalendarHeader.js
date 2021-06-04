@@ -4,7 +4,7 @@ export default function CalendarHeader(props) {
   let header = [<div className="calendar-header-day calendar-gutter">___</div>]
   if (props.type === 'day') {
     header = [
-      <div key={props.start} className="calendar-header-day">
+      <div key={props.start+'day'} className="calendar-header-day">
         <div>{moment(props.start).format('ddd')}</div>
         <div>{moment(props.start).format('DD')}</div>
       </div>
@@ -13,7 +13,7 @@ export default function CalendarHeader(props) {
     for (const x of Array(7).keys()) {
       const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
       header.push(
-        <div key={dat} className="calendar-header-day">
+        <div key={dat+'week'} className="calendar-header-day">
           <div>{moment(props.start).add(x, 'days').format('ddd')}</div>
           <div>{moment(props.start).add(x, 'days').format('DD')}</div>
         </div>
@@ -24,7 +24,7 @@ export default function CalendarHeader(props) {
     for (const x of Array(7).keys()) {
       const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
       header.push(
-        <div key={dat} className="calendar-header-day">
+        <div key={dat+'month'} className="calendar-header-day">
           <div>{moment(props.start).add(x, 'days').format('ddd')}</div>
         </div>
       )

@@ -38,36 +38,20 @@ export default function Week(props) {
   }
   if (error) {
       console.error('ERROR TODO POP-IT')
-      return (
-        <div className="calendar-week">
-          <Timetable />
-          {week}
-        </div>
-      )
-  } else if (!isLoaded) {
-      return (
-        <div className="calendar-week">
-          <Timetable />
-          {week}
-        </div>
-      )
-  } else {
+  } else if (isLoaded) {
     Array.from(items).forEach((event) => {
-      // if (event.message) {
-      //   return
-      // }
       eventsByDate[event.date].push(event)
     })
-    const week = []
+    week.length = 0
     for (const x of Array(7).keys()) {
       const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-      week.push(<Day key={dat}  date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+      week.push(<Day key={dat} events={eventsByDate[dat]}/>)
     }
-    return (
-      <div className="calendar-week">
-        <Timetable />
-        {week}
-      </div>
-    )
   }
+  return (
+    <div className="calendar-week">
+      <Timetable />
+      {week}
+    </div>
+  )
 }

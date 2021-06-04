@@ -2,26 +2,40 @@ import './App.css';
 import Header from './Header/Header';
 import Calendar from './Calendar/Calendar';
 import {useState} from "react";
+import moment from "moment";
 
 export default function App() {
-  let initialType = window.location.href.split("/")
-  const types = ['week', 'day', 'month']
-  if ((initialType.length < 4) || (!('week' in ['week']))) {
-    console.log('not in abaoa')
-    console.log((initialType.length < 4))
-    console.log((!(initialType[3] in types)))
-    console.log(typeof initialType[3])
-    initialType = 'week'
-    window.history.pushState(initialType, 'Xalendar', initialType)
+  let locationParams = window.location.href.split("/")
+
+  const [date, setDate] = useState(moment())
+  const [type, setType] = useState('week')
+
+  const types = {week: 'week', day: 'day', month: 'month'} //TODO Service Enum
+  if ((locationParams.length < 4) || (!(locationParams[3] in types))) {
+    window.history.pushState(type, 'Xalendar', `/${type}`)
   } else {
-    initialType = initialType[3]
+    // if (locationParams[3] !== 'week') { TODO fix
+    //   console.log('sad')
+    //   setType(locationParams[3])
+    // }
   }
 
-  const [type, setType] = useState(initialType)
+  useState(() => {
+    if (locationParams.length === 7) {
+      const dateArr = locationParams.slice(4, 7)
+      dateArr.forEach((el, ind) => {
+        if (el === '') {
+          dateArr[ind] = '999999'
+        } //классный костыль :)
+      })
+      setDate(moment(dateArr.join('-'))) //TODO fix
+
+    }
+  })
   return (
     <div>
       <Header setType={setType} />
-      <Calendar type={type} />
+      <Calendar type={type} date={date} setDate={setDate} />
     </div>
   )
-} //TODO location router
+}
