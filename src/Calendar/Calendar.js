@@ -29,31 +29,46 @@ const getMonth = function(date, offset) {
 export default function Calendar(props) {
   const [offset, setOffset] = useState(0);
   const nowDate = moment().format('YYYY-MM-DD')
+  let name
   let calendar
   if (props.type === 'week') {
     const [start, end] = getWeek(nowDate, offset)
+    const startMonth = moment(start).add(offset, 'days').format("MMMM")
+    const startYear = moment(start).add(offset, 'days').format("YYYY")
+    const endMonth = moment(end).add(offset, 'days').format("MMMM")
+    const endYear = moment(end).add(offset, 'days').format("YYYY")
+    if (startMonth===endMonth) {
+      name = `${startMonth} ${startYear}`
+    } else if (startYear===endYear) {
+      name = `${startMonth} - ${endMonth} ${endYear}`
+    } else {
+      name = `${startMonth} ${startYear} - ${endMonth} ${endYear}`
+    }
     calendar = [
       <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
       <Week start={start} end={end} key={start+end}/>
     ]
   } else if (props.type === 'month') {
     const [start, end] = getMonth(nowDate, offset)
+    name = moment().add(offset, 'days').format("MMMM YYYY")
     calendar = [
-        <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
-        <Month />
+      <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
+      <Month start={start} end={end} key={start+end}/>
     ]
   } else if (props.type === 'day') {
+    const day = moment().add(offset, 'days')
+    name = day.format("DD MMMM YYYY")
     calendar = [
-      <CalendarHeader key={props.type} type={props.type} start={moment().add(offset, 'days').format('YYYY-MM-DD')} end={moment().add(offset, 'days').format('YYYY-MM-DD')}/>,
+      <CalendarHeader key={props.type} type={props.type} start={day.format('YYYY-MM-DD')} end={day.format('YYYY-MM-DD')}/>,
       <div className="calendar-week">
         <Timetable />
-        <Day date={moment().add(offset, 'days').format('YYYY-MM-DD')} standalone={true} />
+        <Day date={day.format('YYYY-MM-DD')} standalone={true} />
       </div>
     ]
   }
   return (
     <div className="calendar">
-      <Pagination name={'June'} offset={offset} offsetHook={setOffset}/>
+      <Pagination name={name} offset={offset} offsetHook={setOffset}/>
       {calendar}
     </div>
   )

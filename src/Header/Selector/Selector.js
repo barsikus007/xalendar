@@ -1,6 +1,7 @@
 export default function Selector(props){
   const handleChange = (e) => {
     props.setType(e.target.value)
+    window.history.pushState(e.target.value, 'Xalendar', e.target.value)
   }
 
   return(

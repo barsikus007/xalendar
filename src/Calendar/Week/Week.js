@@ -53,9 +53,9 @@ export default function Week(props) {
       )
   } else {
     Array.from(items).forEach((event) => {
-      if (event.message) {
-        return
-      }
+      // if (event.message) {
+      //   return
+      // }
       eventsByDate[event.date].push(event)
     })
     const week = []
