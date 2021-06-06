@@ -14,10 +14,9 @@ export default function App() {
   if ((locationParams.length < 4) || (!(locationParams[3] in types))) {
     window.history.pushState(type, 'Xalendar', `/${type}`)
   } else {
-    // if (locationParams[3] !== 'week') { TODO fix
-    //   console.log('sad')
-    //   setType(locationParams[3])
-    // }
+    if (locationParams[3] !== type) {
+      setType(locationParams[3])
+    }
   }
 
   useState(() => {
@@ -29,12 +28,11 @@ export default function App() {
         } //классный костыль :)
       })
       setDate(moment(dateArr.join('-'))) //TODO fix
-
     }
   })
   return (
     <div>
-      <Header setType={setType} />
+      <Header type={type} setType={setType} />
       <Calendar type={type} date={date} setDate={setDate} />
     </div>
   )

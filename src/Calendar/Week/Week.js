@@ -1,35 +1,34 @@
 import Day from "../Day/Day";
 import Timetable from "../Timetable/Timetable";
-import {useState, useEffect} from "react";
 import moment from "moment";
-import EventService from "../../Service";
-// require('moment/locale/ru');
+import useFetch from "react-fetch-hook";
 
 
 export default function Week(props) {
-  const [error, setError] = useState(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [items, setItems] = useState([])
+  const { isLoaded, items, error } = useFetch(`https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`)
+  // const [error, setError] = useState(null)
+  // const [isLoaded, setIsLoaded] = useState(false)
+  // const [items, setItems] = useState([])
 
-  useEffect(() => {
-    if (!isLoaded) {
-      EventService.getEvents(props.start, props.end)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true)
-            setItems(result)
-          },
-          (error) => {
-            setIsLoaded(true)
-            setError(error)
-          }
-        )
-    }
-    return () => {
-      setIsLoaded(true)
-    }
-  })
+  // useEffect(() => {
+  //   if (!isLoaded) {
+  //     EventService.getEvents(props.start, props.end)
+  //       .then(res => res.json())
+  //       .then(
+  //         (result) => {
+  //           setIsLoaded(true)
+  //           setItems(result)
+  //         },
+  //         (error) => {
+  //           setIsLoaded(true)
+  //           setError(error)
+  //         }
+  //       )
+  //   }
+  //   return () => {
+  //     setIsLoaded(true)
+  //   }
+  // })
   const eventsByDate = {}
   const week = []
   for (const x of Array(7).keys()) {

@@ -1,50 +1,18 @@
 import MonthWeek from "./MonthWeek/MonthWeek";
-import {useState, useEffect} from "react";
 import moment from "moment";
-import EventService from "../../Service";
+import useFetch from "react-fetch-hook";
 
 export default function Month(props) {
-  const [error, setError] = useState(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [items, setItems] = useState([])
+  const { isLoaded, items, error } = useFetch(`https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`)
 
   const weeksCount = (moment.duration(moment(props.end).diff(moment(props.start))).asDays()+1)/7
-
-  useEffect(() => {
-    // let aaa = EventService.test()
-    // aaa.then((response) => {
-    //     console.log(response)
-    //   })
-    //   // .then((data) => {
-    //   //   console.log(data)
-    //   // })
-    // console.log(aaa)
-    if (!isLoaded) {
-      EventService.getEvents(props.start, props.end)
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true)
-            setItems(result)
-          },
-          (error) => {
-            setIsLoaded(true)
-            setError(error)
-          }
-        )
-    }
-    return () => {
-      setIsLoaded(true)
-    }
-  })
 
   const eventsByWeek = {}
   const month = []
   for (const x of Array(weeksCount).keys()) {
     const start = moment(props.start).add(x, 'weeks').format('YYYY-MM-DD')
-    const end = moment(start).add(6, 'days').format('YYYY-MM-DD')
     eventsByWeek[start] = []
-    month.push(<MonthWeek events={eventsByWeek[start]} start={start} end={end} date={props.date} />)
+    month.push(<MonthWeek events={eventsByWeek[start]} start={start} date={props.date} />)
   }
   if (error) {
       console.error('ERROR TODO POP-IT')
@@ -61,9 +29,6 @@ export default function Month(props) {
       )
   } else {
     Array.from(items).forEach((event) => {
-      // if (event.message) {
-      //   return
-      // }
       eventsByWeek[event.date].push(event)
     })
     month.length = 0

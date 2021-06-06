@@ -9,7 +9,7 @@ export default function Header(props) {
       <div className="section-inner">
         <div className="header-wrapper">
           <Title/>
-          <Selector setType={props.setType}/>
+          <Selector type={props.type} setType={props.setType}/>
           <Login/>
         </div>
       </div>
