@@ -6,35 +6,13 @@ import useFetch from "react-fetch-hook";
 
 export default function Week(props) {
   const { isLoaded, items, error } = useFetch(`https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`)
-  // const [error, setError] = useState(null)
-  // const [isLoaded, setIsLoaded] = useState(false)
-  // const [items, setItems] = useState([])
 
-  // useEffect(() => {
-  //   if (!isLoaded) {
-  //     EventService.getEvents(props.start, props.end)
-  //       .then(res => res.json())
-  //       .then(
-  //         (result) => {
-  //           setIsLoaded(true)
-  //           setItems(result)
-  //         },
-  //         (error) => {
-  //           setIsLoaded(true)
-  //           setError(error)
-  //         }
-  //       )
-  //   }
-  //   return () => {
-  //     setIsLoaded(true)
-  //   }
-  // })
   const eventsByDate = {}
   const week = []
   for (const x of Array(7).keys()) {
     const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
     eventsByDate[dat] = []
-    week.push(<Day key={dat} date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+    week.push(<Day key={dat} date={props.date} events={eventsByDate[dat]} />)
   }
   if (error) {
       console.error('ERROR TODO POP-IT')
@@ -45,7 +23,7 @@ export default function Week(props) {
     week.length = 0
     for (const x of Array(7).keys()) {
       const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-      week.push(<Day key={dat} events={eventsByDate[dat]}/>)
+      week.push(<Day key={dat} date={props.date} events={eventsByDate[dat]} />)
     }
   }
   return (

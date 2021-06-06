@@ -1,13 +1,11 @@
 export default function Selector(props){
-  const handleChange = (e) => {
-    props.setType(e.target.value)
-    window.history.pushState(e.target.value, 'Xalendar', e.target.value)
-  }
-
   return(
     <div className="header__selector">
       <label>
-        <select defaultValue={props.type} onChange={handleChange}>
+        <select defaultValue={props.type} onChange={
+          (e) => {
+            props.setType(e.target.value)
+          }}>
           <option value="week">Неделя</option>
           <option value="day">День</option>
           <option value="month">Месяц</option>

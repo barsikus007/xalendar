@@ -46,7 +46,7 @@ export default function Calendar(props) {
     }
     calendar = [
       <CalendarHeader key={props.type+'ds'} type={props.type} start={start} />,
-      <Week start={start} end={end} key={start+end} />
+      <Week start={start} end={end} key={start+end} date={props.date} />
     ]
   } else if (props.type === 'month') {
     const [start, end] = getMonth(date)
