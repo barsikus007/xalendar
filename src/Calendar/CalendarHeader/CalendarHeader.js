@@ -2,7 +2,7 @@ import moment from "moment";
 // require('moment/locale/ru');
 
 export default function CalendarHeader(props) {
-  let header = [<div key="___" className="calendar-header-day calendar-gutter">___</div>]
+  let header = [<div key="___" className="calendar-header-day calendar-header-gutter" />]
   if (props.type === 'day') {
     header = [
       <div key={props.start} className="calendar-header-day">

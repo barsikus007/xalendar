@@ -2,10 +2,9 @@ import './Calendar.css';
 import Day from "./Day/Day";
 import Week from "./Week/Week";
 import Month from "./Month/Month";
+import Timetable from "./Timetable/Timetable";
 import Pagination from "./Pagination/Pagination";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
-// import EventService from "../Service";
-import Timetable from "./Timetable/Timetable";
 import moment from "moment";
 
 
