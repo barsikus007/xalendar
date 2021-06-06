@@ -2,6 +2,7 @@ import Day from "../Day/Day";
 import Timetable from "../Timetable/Timetable";
 import {useState, useEffect} from "react";
 import moment from "moment";
+import EventService from "../../Service";
 // require('moment/locale/ru');
 
 
@@ -12,7 +13,7 @@ export default function Week(props) {
 
   useEffect(() => {
     if (!isLoaded) {
-      fetch(`https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`)
+      EventService.getEvents(props.start, props.end)
         .then(res => res.json())
         .then(
           (result) => {

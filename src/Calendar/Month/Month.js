@@ -1,8 +1,7 @@
+import MonthWeek from "./MonthWeek/MonthWeek";
 import {useState, useEffect} from "react";
 import moment from "moment";
-import MonthWeek from "./MonthWeek/MonthWeek";
-// require('moment/locale/ru');
-
+import EventService from "../../Service";
 
 export default function Month(props) {
   const [error, setError] = useState(null)
@@ -12,8 +11,16 @@ export default function Month(props) {
   const weeksCount = (moment.duration(moment(props.end).diff(moment(props.start))).asDays()+1)/7
 
   useEffect(() => {
+    // let aaa = EventService.test()
+    // aaa.then((response) => {
+    //     console.log(response)
+    //   })
+    //   // .then((data) => {
+    //   //   console.log(data)
+    //   // })
+    // console.log(aaa)
     if (!isLoaded) {
-      fetch(`https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`)
+      EventService.getEvents(props.start, props.end)
         .then(res => res.json())
         .then(
           (result) => {

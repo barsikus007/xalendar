@@ -1,7 +1,6 @@
 import moment from "moment";
 
 export default function MonthDay(props) {
-  // TODO events
   return (
       <div className={
           (moment(props.day).month() === moment(props.date).month())

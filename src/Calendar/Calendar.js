@@ -1,4 +1,3 @@
-import {useState} from "react";
 import './Calendar.css';
 import Day from "./Day/Day";
 import Week from "./Week/Week";
@@ -47,20 +46,20 @@ export default function Calendar(props) {
       name = `${startMonth} ${startYear} - ${endMonth} ${endYear}`
     }
     calendar = [
-      <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
-      <Week start={start} end={end} key={start+end}/>
+      <CalendarHeader key={props.type+'ds'} type={props.type} start={start} />,
+      <Week start={start} end={end} key={start+end} />
     ]
   } else if (props.type === 'month') {
     const [start, end] = getMonth(date)
     name = props.date.format("MMMM YYYY")
     calendar = [
-      <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
-      <Month start={start} end={end} key={start+end} date={date}/>
+      <CalendarHeader key={props.type+'dss'} type={props.type} start={start} />,
+      <Month start={start} end={end} key={start+end} date={date} />
     ]
   } else if (props.type === 'day') {
     name = props.date.format("DD MMMM YYYY")
     calendar = [
-      <CalendarHeader key={props.type} type={props.type} start={date} end={date}/>,
+      <CalendarHeader key={props.type+'dsss'} type={props.type} start={date} />,
       <div key={name+'day'} className="calendar-week">
         <Timetable />
         <Day date={props.date.format('YYYY-MM-DD')} standalone={true} />
@@ -69,7 +68,7 @@ export default function Calendar(props) {
   }
   return (
     <div className="calendar">
-      <Pagination name={name} pageDate={pageDate}/>
+      <Pagination name={name} pageDate={pageDate} />
       {calendar}
     </div>
   )
