@@ -10,9 +10,9 @@ export default function Week(props) {
   const eventsByDate = {}
   const week = []
   for (const x of Array(7).keys()) {
-    const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-    eventsByDate[dat] = []
-    week.push(<Day key={dat} date={props.date} events={eventsByDate[dat]} />)
+    const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+    eventsByDate[day] = []
+    week.push(<Day key={day} day={day} events={eventsByDate[day]} />)
   }
   if (error) {
       console.error('ERROR TODO POP-IT')
@@ -22,8 +22,8 @@ export default function Week(props) {
     })
     week.length = 0
     for (const x of Array(7).keys()) {
-      const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-      week.push(<Day key={dat} date={props.date} events={eventsByDate[dat]} />)
+      const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+      week.push(<Day key={day} day={day} events={eventsByDate[day]} />)
     }
   }
   return (

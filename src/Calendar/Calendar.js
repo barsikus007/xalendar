@@ -61,7 +61,7 @@ export default function Calendar(props) {
       <CalendarHeader key={props.type+'dsss'} type={props.type} start={date} />,
       <div key={name+'day'} className="calendar-week">
         <Timetable />
-        <Day date={props.date.format('YYYY-MM-DD')} standalone={true} />
+        <Day key={props.date.format('YYYY-MM-DD')} date={props.date.format('YYYY-MM-DD')} standalone={true} />
       </div>
     ]
   }
