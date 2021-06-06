@@ -37,18 +37,18 @@ export default function Month(props) {
     const start = moment(props.start).add(x, 'weeks').format('YYYY-MM-DD')
     const end = moment(start).add(6, 'days').format('YYYY-MM-DD')
     eventsByWeek[start] = []
-    month.push(<MonthWeek events={eventsByWeek[start]} start={start} end={end} />)
+    month.push(<MonthWeek events={eventsByWeek[start]} start={start} end={end} date={props.date} />)
   }
   if (error) {
       console.error('ERROR TODO POP-IT')
       return (
-        <div className="calendar-week">
+        <div className="calendar-month">
           {month}
         </div>
       )
   } else if (!isLoaded) {
       return (
-        <div className="calendar-week">
+        <div className="calendar-month">
           {month}
         </div>
       )

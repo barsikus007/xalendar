@@ -38,6 +38,39 @@
     overflow: auto;
   }
 
+  &-month{
+    display: flex;
+    //flex: 1 0;
+    flex-direction: column;
+    width: 100%;
+    min-height: 90vh;
+    height: 100%;
+    overflow: auto;
+    &-week{
+      justify-content: space-between;
+      display: flex;
+      //flex-direction: column;
+      flex: 1 0;
+      &-day{
+        //box-sizing: inherit;
+        width: 100%;
+        text-align: center;
+        border-left: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        &__othermonth{
+          text-align: center;
+          width: 100%;
+          border-left: 1px solid #DDD;
+          border-bottom: 1px solid #DDD;
+          background-color: #E5E5E5;
+        }
+      }
+    }
+    //flex-flow: row nowrap; // idk
+    justify-content: space-between;
+    align-items: stretch; // idk
+  }
+
   &-header{
     text-align: center;
     //flex: 0 0 auto; //idk

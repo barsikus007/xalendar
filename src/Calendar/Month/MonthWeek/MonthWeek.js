@@ -12,11 +12,15 @@ export default function MonthWeek(props) {
   const eventsByDate = {}
   const week = []
   for (const x of Array(7).keys()) {
-    const dat = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-    eventsByDate[dat] = []
-    week.push(<MonthDay key={dat} date={dat} events={eventsByDate[dat]} name={moment(props.start).add(x, 'days').format('dddd')} />)
+    const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+    eventsByDate[day] = []
+    week.push(<MonthDay key={day} day={day} date={props.date} events={eventsByDate[day]} />)
   }
-  return (<div>{props.start}{props.end}</div>)
+  return (
+      <div className="calendar-month-week">
+        {week}
+      </div>
+  )
 //   if (error) {
 //       console.error('ERROR TODO POP-IT')
 //       return (

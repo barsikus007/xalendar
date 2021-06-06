@@ -55,7 +55,7 @@ export default function Calendar(props) {
     name = props.date.format("MMMM YYYY")
     calendar = [
       <CalendarHeader key={props.type} type={props.type} start={start} end={end}/>,
-      <Month start={start} end={end} key={start+end}/>
+      <Month start={start} end={end} key={start+end} date={date}/>
     ]
   } else if (props.type === 'day') {
     name = props.date.format("DD MMMM YYYY")
