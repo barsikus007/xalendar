@@ -6,8 +6,7 @@ import UserCard from "./UserCard";
 export default function Login() {
   const [isModalOpen,setModalOpen] = useState(false);
   const toggleUserCardVisibility =() => {
-
-    setModalOpen((visible)=>!visible);
+    setModalOpen((visible)=>!visible)
   };
 
   const modalRef = useRef(null);
@@ -32,17 +31,16 @@ function useOnClickOutside(ref, handler) {
   useEffect(
     () => {
       const listener = (event) => {
-        // Do nothing if clicking ref's element or descendent elements
         if (!ref.current || ref.current.contains(event.target)) {
           return;
         }
         handler(event);
       };
       document.addEventListener("mouseup", listener);
-      document.addEventListener("touchstart", listener);
+      document.addEventListener("touchend", listener);
       return () => {
         document.removeEventListener("mouseup", listener);
-        document.removeEventListener("touchstart", listener);
+        document.removeEventListener("touchend", listener);
       };
     },
     [ref, handler]
