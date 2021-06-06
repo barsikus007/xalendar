@@ -1,27 +1,50 @@
 import icon from "../../img/img.png"
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import UserCard from "./UserCard";
 
+
 export default function Login() {
-  const [isCardVisible,setIsCardVisible] = useState(false);
-  const toggleVisibleCard =() => {
-    setIsCardVisible((visible)=>!visible);
+  const [isModalOpen,setModalOpen] = useState(false);
+  const toggleUserCardVisibility =() => {
+
+    setModalOpen((visible)=>!visible);
   };
-  const dropdownRef = useRef(null);
+
+  const modalRef = useRef(null);
   const userName = "Иванов И.И.";
-  const showUserCard = "active";
-  const hideUserCard = "inactive";
+  useOnClickOutside(modalRef, () => setModalOpen(false));
 
   return(
-
-    <div className="header__login">
+    <div className="header-login">
       <h3>{userName}</h3>
-      <img className="header__login__icon" src={icon} onClick={() => {toggleVisibleCard()}} alt="icon"/>
-      <div ref={dropdownRef}
-           className={`header__login__menu__${isCardVisible ? showUserCard : hideUserCard}`}>
-        {UserCard(userName)}
-      </div>
+      <img className="header-login__icon" src={icon} onClick={() => {toggleUserCardVisibility()}} alt="icon"/>
+      {isModalOpen ? (
+        <div ref={modalRef} className="header-login__menu">
+          {UserCard(userName)}
+        </div>
+      ) :false
+      }
     </div>
   );
 }
 
+function useOnClickOutside(ref, handler) {
+  useEffect(
+    () => {
+      const listener = (event) => {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mouseup", listener);
+      document.addEventListener("touchstart", listener);
+      return () => {
+        document.removeEventListener("mouseup", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    },
+    [ref, handler]
+  );
+}

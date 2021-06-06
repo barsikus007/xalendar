@@ -1,6 +1,6 @@
 export default function Selector(props){
   return(
-    <div className="header__selector">
+    <div className="header-selector">
       <label>
         <select defaultValue={props.type} onChange={
           (e) => {

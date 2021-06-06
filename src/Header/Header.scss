@@ -9,7 +9,7 @@
     justify-content: space-around;
     align-items: center;
   }
-  &__title{
+  &-title{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -28,7 +28,7 @@
       top: 19px;
     }
   }
-  &__selector{
+  &-selector{
     align-self: auto;
     align-items: center;
     select{
@@ -46,7 +46,7 @@
     }
   }
 
-  &__login{
+  &-login{
 
     display: flex;
     /* flex-flow: column wrap;*/
@@ -69,11 +69,8 @@
 
 
     }
-    &__menu__inactive{
-      display: none;
 
-    }
-    &__menu__active {
+    &__menu {
       li {list-style-type: none;
         margin: 35px 0 0;
         padding-left: 120px;
@@ -114,6 +111,7 @@
         text-decoration: none;
         margin-left: 65px;
         padding: 8px 16px;
+        size: 0;
       }
     }
   }
