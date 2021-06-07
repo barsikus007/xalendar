@@ -27,7 +27,7 @@ export default function Month(props) {
       eventsByWeek[moment(event.date).startOf('isoWeek').format('YYYY-MM-DD')].push(event)
     })
     month.length = 0
-    for (const x of Array(7).keys()) {
+    for (const x of Array(weeksCount).keys()) {
       const week = moment(props.start).add(x, 'weeks').format('YYYY-MM-DD')
       month.push(<MonthWeek key={week} date={props.date} start={week} events={eventsByWeek[week]} />)
     }
