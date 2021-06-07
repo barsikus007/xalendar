@@ -5,7 +5,7 @@ import useFetch from "react-fetch-hook";
 export default function Month(props) {
   const { isLoaded, items, error } = useFetch(`https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`)
 
-  const weeksCount = (moment.duration(moment(props.end).diff(moment(props.start))).asDays()+1)/7
+  const weeksCount = (moment.duration(moment(props.end).diff(moment(props.start))).asDays()+1)/7 | 0
   const eventsByWeek = {}
   const month = []
   for (const x of Array(weeksCount).keys()) {

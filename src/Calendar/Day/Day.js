@@ -9,7 +9,6 @@ export default function Day(props) {
   let events = props?.events ? props.events : []
 
   if (props.standalone) {
-    console.log('standalone')
     if (error) {
       console.error('ERROR TODO POP-IT')
     } else if (isLoaded) {

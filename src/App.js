@@ -1,56 +1,38 @@
 import './App.css';
 import Header from './Header/Header';
 import Calendar from './Calendar/Calendar';
-import {useState, useEffect} from "react";
 import moment from "moment";
+import {useState, useEffect} from "react";
+
+const checkDate = (locationParams) => {
+  if (locationParams.length === 7) {
+    const dateArr = locationParams.slice(4, 7)
+    for (const el of dateArr) {
+      if (el === '') {
+        return moment()
+      }
+    }
+    return moment(dateArr.join('-'))
+  }
+  return moment()
+}
 
 export default function App() {
   const locationParams = window.location.href.split("/")
-  const types = {week: 'week', day: 'day', month: 'month'} //TODO Service Enum
+  const TYPES = {week: 'week', day: 'day', month: 'month'}
 
-  const [type, setType] = useState((locationParams[3] in types) ? locationParams[3] : 'week')
-  const [date, setDate] = useState(() => {
-    if (locationParams.length === 7) {
-      const dateArr = locationParams.slice(4, 7)
-      dateArr.forEach((el, ind) => {
-        if (el === '') {
-          dateArr[ind] = '999999'
-        } //классный костыль :)
-      })
-      const date = moment(dateArr.join('-'))
-      if (date.isValid()) {
-        return date
-      }
-    }
-    return moment()
-  })
+  const [type, setType] = useState((locationParams[3] in TYPES) ? locationParams[3] : 'week')
+  const [date, setDate] = useState(checkDate(locationParams))
 
   useEffect(() => {
     const locationParams = window.location.href.split("/")
     window.history.replaceState(null, "", `/${type}`)
-    if (locationParams.length === 7) {
-      const dateArr = locationParams.slice(4, 7)
-      dateArr.forEach((el, ind) => {
-        if (el === '') {
-          dateArr[ind] = '999999'
-        } //классный костыль :)
-      })
-      const date = moment(dateArr.join('-'))
-      if (!date.isValid()) {
-        setDate(moment())
-      } else {
-        setDate(date)
-      }
-    } else {
-      setDate(moment())
-    }
+    setDate(checkDate(locationParams))
   }, [type])
 
   useEffect(() => {
     const locationParams = window.location.href.split("/")
-    let url = `/${locationParams[3]}`
-    url += moment(date).format("/YYYY/MM/DD")
-    window.history.pushState(null, "", url)
+    window.history.pushState(null, "", `/${locationParams[3]}/${moment(date).format("YYYY/MM/DD")}`)
   }, [date])
 
   return (
