@@ -7,7 +7,6 @@ import Pagination from "./Pagination/Pagination";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import moment from "moment";
 
-
 const getWeek = function(date) {
   return [
     moment(date).startOf('isoWeek').format('YYYY-MM-DD'),
@@ -29,10 +28,10 @@ export default function Calendar(props) {
   const pageDate = function (offset) {
     props.setDate(moment(date).add(offset, `${props.type}s`))
   }
-  let name
+  let name, start, end
   let calendar
   if (props.type === 'week') {
-    const [start, end] = getWeek(date)
+    [start, end] = getWeek(date)
     const startMonth = moment(start).format("MMMM")
     const startYear = moment(start).format("YYYY")
     const endMonth = moment(end).format("MMMM")
@@ -44,30 +43,25 @@ export default function Calendar(props) {
     } else {
       name = `${startMonth} ${startYear} - ${endMonth} ${endYear}`
     }
-    calendar = [
-      <CalendarHeader key={props.type+'ds'} type={props.type} start={start} />,
-      <Week start={start} end={end} key={start+end} date={props.date} />
-    ]
+    calendar = <Week start={start} end={end}/>
   } else if (props.type === 'month') {
-    const [start, end] = getMonth(date)
+    [start, end] = getMonth(date)
     name = props.date.format("MMMM YYYY")
-    calendar = [
-      <CalendarHeader key={props.type+'dss'} type={props.type} start={start} />,
-      <Month start={start} end={end} key={start+end} date={date} />
-    ]
+    calendar = <Month start={start} end={end} date={date} />
   } else if (props.type === 'day') {
+    start = date
     name = props.date.format("DD MMMM YYYY")
-    calendar = [
-      <CalendarHeader key={props.type+'dsss'} type={props.type} start={date} />,
-      <div key={name+'day'} className="calendar-week">
+    calendar = (
+      <div className="calendar-week">
         <Timetable />
-        <Day key={props.date.format('YYYY-MM-DD')} date={props.date.format('YYYY-MM-DD')} standalone={true} />
+        <Day date={props.date.format('YYYY-MM-DD')} standalone={true} />
       </div>
-    ]
+    )
   }
   return (
     <div className="calendar">
       <Pagination name={name} pageDate={pageDate} />
+      <CalendarHeader type={props.type} start={start} />
       {calendar}
     </div>
   )
