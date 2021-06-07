@@ -2,35 +2,17 @@ import moment from "moment";
 // require('moment/locale/ru');
 
 export default function CalendarHeader(props) {
-  let header = [<div key="___" className="calendar-header-day calendar-header-gutter" />]
-  if (props.type === 'day') {
-    header = [
-      <div key={props.start} className="calendar-header-day">
-        <div>{moment(props.start).format('ddd')}</div>
-        <div>{moment(props.start).format('DD')}</div>
+  let header = (props.type !== 'month') ? [<div key="" className="calendar-header-day calendar-header-gutter" />] : []
+  for (const x of Array((props.type === 'day') ? 1 : 7).keys()) {
+    const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+    header.push(
+      <div key={day} className="calendar-header-day">
+        <div>{moment(props.start).add(x, 'days').format('ddd')}</div>
+        {(props.type !== 'month') ? <div>{moment(props.start).add(x, 'days').format('DD')}</div> : null}
       </div>
-    ]
-  } else if (props.type === 'week'){
-    for (const x of Array(7).keys()) {
-      const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-      header.push(
-        <div key={day} className="calendar-header-day">
-          <div>{moment(props.start).add(x, 'days').format('ddd')}</div>
-          <div>{moment(props.start).add(x, 'days').format('DD')}</div>
-        </div>
-      )
-    }
-  } else if (props.type === 'month'){
-    header = []
-    for (const x of Array(7).keys()) {
-      const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-      header.push(
-        <div key={day} className="calendar-header-day">
-          <div>{moment(props.start).add(x, 'days').format('ddd')}</div>
-        </div>
-      )
-    }
+    )
   }
+
   return (
     <div className="calendar-header">
       {header}

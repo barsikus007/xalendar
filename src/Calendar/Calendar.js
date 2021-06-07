@@ -54,7 +54,7 @@ export default function Calendar(props) {
     calendar = (
       <div className="calendar-week">
         <Timetable />
-        <Day date={props.date.format('YYYY-MM-DD')} standalone={true} />
+        <Day date={props.date.format('YYYY-MM-DD')} standalone />
       </div>
     )
   }
