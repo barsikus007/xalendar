@@ -1,4 +1,5 @@
 import moment from "moment";
+import MonthEventContainer from "../MonthEventContainer/MonthEventContainer";
 
 export default function MonthDay(props) {
   return (
@@ -8,6 +9,7 @@ export default function MonthDay(props) {
               : "calendar-month-week-day__othermonth"
       }>
         {moment(props.day).date()}
+        <MonthEventContainer events={props.events} />
       </div>
   )
 }

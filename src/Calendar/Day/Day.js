@@ -3,7 +3,7 @@ import EventContainer from "../EventContainer/EventContainer";
 import useFetch from "react-fetch-hook";
 
 export default function Day(props) {
-  const { isLoading, items, error } = useFetch(
+  const { isLoading, data, error } = useFetch(
     `https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.date}&endDate=${props.date}`,
     { depends: [props.standalone] }
   )
@@ -13,10 +13,9 @@ export default function Day(props) {
     if (error) {
       console.error('ERROR TODO POP-IT')
     } else if (!isLoading) {
-      events = items
+      events = data
     }
   }
-
   return (
     <div className="calendar-day">
       {Array.from({length: 24}, (x, n) => <Timeslot key={n} />)}
