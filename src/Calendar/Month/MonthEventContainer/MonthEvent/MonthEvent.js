@@ -9,10 +9,11 @@ export default function MonthEvent(props) {
     top: `${startTime/1440*100}%`,
     height: `${endTime/1440*100 - startTime/1440*100}%`,
     left: `0%`,
-    width: `100%`,
+    width: `14%`,
   }
   return (
-    <div className="month-event" style={eventStyle}>
+    // <div className="month-event" style={eventStyle}>
+    <div className="">
       <div>
         {props.event.name}
       </div>
