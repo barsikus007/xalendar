@@ -1,11 +1,16 @@
 import MonthWeek from "./MonthWeek/MonthWeek";
 import moment from "moment";
 import useFetch from "react-fetch-hook";
+import {useEffect} from "react";
 
 export default function Month(props) {
   const { isLoading, data, error } = useFetch(
     `https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`
   )
+
+  useEffect(() => {
+    if (data !== undefined) data.length = 0
+  })
 
   const weeksCount = (moment.duration(moment(props.end).diff(moment(props.start))).asDays()+1)/7 | 0
   const eventsByWeek = {}
@@ -19,7 +24,7 @@ export default function Month(props) {
       console.error('ERROR TODO POP-IT')
   } else if (!isLoading) {
     Array.from(data).forEach((event) => {
-      eventsByWeek[event.date].push(event)
+      eventsByWeek[moment(event.date).startOf('isoWeek').format('YYYY-MM-DD')].push(event)
     })
     month.length = 0
     for (const x of Array(7).keys()) {

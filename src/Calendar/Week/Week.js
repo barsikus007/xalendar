@@ -2,11 +2,16 @@ import Day from "../Day/Day";
 import Timetable from "../Timetable/Timetable";
 import moment from "moment";
 import useFetch from "react-fetch-hook";
+import {useEffect} from "react";
 
 export default function Week(props) {
   const { isLoading, data, error } = useFetch(
     `https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.start}&endDate=${props.end}`
   )
+
+  useEffect(() => {
+    if (data !== undefined) data.length = 0
+  })
 
   const eventsByDate = {}
   const week = []
