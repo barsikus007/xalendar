@@ -1,4 +1,4 @@
-import './Calendar.css';
+import './Calendar.scss';
 import Day from "./Day/Day";
 import Week from "./Week/Week";
 import Month from "./Month/Month";

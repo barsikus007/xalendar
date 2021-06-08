@@ -1,4 +1,4 @@
-import './Header.css';
+import './Header.scss';
 import Title from './Title/Title';
 import Selector from './Selector/Selector';
 import Login from './Login/Login'
