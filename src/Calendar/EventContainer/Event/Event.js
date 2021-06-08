@@ -1,7 +1,12 @@
+import moment from "moment";
+
 export default function Event(props) {
   // time 0000-2359 : 0-100%
-  const startTime = +props.event.start_time.slice(0, 2)*60 + +props.event.start_time.slice(3, 5)
-  const endTime = +props.event.end_time.slice(0, 2)*60 + +props.event.end_time.slice(3, 5)
+  //2 or more events
+  // moment.duration(moment(props.event.start_date).format('HH:mm')).asMinutes()
+  // moment.duration(moment(props.event.end_date).format('HH:mm')).asMinutes()
+  const startTime = (moment(props.event.start_date).hour()-3)*60 + moment(props.event.start_date).minute() // TODO kostil
+  const endTime = (moment(props.event.end_date).hour()-3)*60 + moment(props.event.end_date).minute()
   const eventStyle = {
     top: `${startTime/1440*100}%`,
     height: `${endTime/1440*100 - startTime/1440*100}%`,

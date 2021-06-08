@@ -2,9 +2,9 @@ export default function Selector(props){
   return(
     <div className="header-selector">
       <label>
-        <select defaultValue={props.type} onChange={
+        <select defaultValue={props.currentType} onChange={
           (e) => {
-            props.setType(e.target.value)
+            props.selectType(e.target.value)
           }}>
           <option value="week">Неделя</option>
           <option value="day">День</option>

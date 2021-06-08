@@ -3,8 +3,8 @@ import EventContainer from "../EventContainer/EventContainer";
 import useFetch from "react-fetch-hook";
 
 export default function Day(props) {
-  const { isLoading, data, error } = useFetch(
-    `https://xalendar.herokuapp.com/events?userId=256720&startDate=${props.date}&endDate=${props.date}`,
+  const { isLoading, data: eventsRaw, error } = useFetch(
+    `http://165.22.72.61/events?userId=269788&startDate=${props.date}&endDate=${props.date}`,
     { depends: [props.standalone] }
   )
   let events = props?.events ? props.events : []
@@ -13,7 +13,7 @@ export default function Day(props) {
     if (error) {
       console.error('ERROR TODO POP-IT')
     } else if (!isLoading) {
-      events = data
+      events = eventsRaw
     }
   }
   return (

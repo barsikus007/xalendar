@@ -2,7 +2,6 @@ import icon from "../../img/img.png"
 import {useState, useRef, useEffect} from "react";
 import UserCard from "./UserCard";
 
-
 export default function Login() {
   const [isModalOpen,setModalOpen] = useState(false);
   const toggleUserCardVisibility =() => {
