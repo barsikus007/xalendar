@@ -3,6 +3,12 @@ import moment from "moment";
 
 export default function Pagination(props) {
   let name
+  const prevDatePage = function () {
+    props.setCurrentDate(moment(props.currentDate).add(-1, `${props.type}s`))
+  }
+  const nextDatePage = function () {
+    props.setCurrentDate(moment(props.currentDate).add(1, `${props.type}s`))
+  }
 
   if (props.type === TYPES.week) {
     const startMonth = moment(props.start).format("MMMM")
@@ -17,16 +23,16 @@ export default function Pagination(props) {
       name = `${startMonth} ${startYear} - ${endMonth} ${endYear}`
     }
   } else if (props.type === TYPES.month) {
-    name = props.date.format("MMMM YYYY")
+    name = props.currentDate.format("MMMM YYYY")
   } else if (props.type === TYPES.day) {
-    name = props.date.format("DD MMMM YYYY")
+    name = props.currentDate.format("DD MMMM YYYY")
   }
 
   return (
     <div className="calendar-pagination">
-      <button onClick={() => props.prevDatePage()}>{"<"}</button>
+      <button onClick={prevDatePage}>{"<"}</button>
       <div>{name}</div>
-      <button onClick={() => props.nextDatePage()}>{">"}</button>
+      <button onClick={nextDatePage}>{">"}</button>
     </div>
   )
 }

@@ -17,7 +17,7 @@ export default function MonthWeek(props) {
     const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
     // eventsByDay[day] = _eventsByDay[day]
     // console.log(eventsByDay)
-    week.push(<MonthDay key={day} day={day} date={props.date} events={eventsByDay[day]} />)
+    week.push(<MonthDay key={day} day={day} currentDate={props.currentDate} events={eventsByDay[day]} />)
   }
   return (
       <div className="calendar-month-week">

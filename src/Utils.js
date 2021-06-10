@@ -4,13 +4,7 @@ export const TYPES = {week: 'week', day: 'day', month: 'month'}
 
 export const checkDate = (locationParams) => {
   if (locationParams.length === 7) {
-    const dateArr = locationParams.slice(4, 7)
-    for (const el of dateArr) {
-      if (isNaN(el)) {
-        return moment()
-      }
-    }
-    const preparedDate = moment(dateArr.join('-'))
+    const preparedDate = moment(locationParams.slice(4, 7).join('/'), 'YYYY/MM/DD', true)
     return preparedDate.isValid() ? preparedDate : moment()
   }
   return moment()

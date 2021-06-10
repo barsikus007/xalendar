@@ -29,7 +29,7 @@ export default function Month(props) {
     <div className="calendar-month">
       {Array.from({length: weeksCount}, (x, n) => {
         const week = moment(props.start).add(n, 'weeks').format('YYYY-MM-DD')
-        return <MonthWeek key={week} date={props.date} start={week} events={eventsByWeek[week]} />
+        return <MonthWeek key={week} currentDate={props.currentDate} start={week} events={eventsByWeek[week]} />
       })}
     </div>
   )
