@@ -1,0 +1,33 @@
+  .side-menu{
+    display: none;
+  }
+@media only screen and (max-width: 786px) {
+  .side-menu {
+    display: flex;
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 2;
+    background-color: #544D4D;
+    overflow-x: hidden;
+    transition: all 0.5s;
+
+
+    align-items: flex-start;
+
+    ul{
+
+      list-style-type: none;
+      overflow-x: hidden;
+      margin-left: -15px;
+    }
+    span{
+      padding-left: 20px;
+      display: flex;
+      margin-bottom: 15px;
+      font-size:50px;
+
+    }
+
+  }
+}
