@@ -1,6 +1,7 @@
 import icon from "../../img/img.png"
-import {useState, useRef, useEffect} from "react";
+import {useState, useRef} from "react";
 import UserCard from "./UserCard";
+import useOnClickOutside from '../Utilities/useOnClickOutside'
 
 export default function Login() {
   const [isModalOpen,setModalOpen] = useState(false);
@@ -26,22 +27,3 @@ export default function Login() {
   );
 }
 
-function useOnClickOutside(ref, handler) {
-  useEffect(
-    () => {
-      const listener = (event) => {
-        if (!ref.current || ref.current.contains(event.target)) {
-          return;
-        }
-        handler(event);
-      };
-      document.addEventListener("mouseup", listener);
-      document.addEventListener("touchend", listener);
-      return () => {
-        document.removeEventListener("mouseup", listener);
-        document.removeEventListener("touchend", listener);
-      };
-    },
-    [ref, handler]
-  );
-}

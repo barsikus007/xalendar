@@ -1,10 +1,22 @@
 .calendar {
   display: flex;
-  position: relative;
   flex-direction: column;
-  //flex: 1 1 auto;
-  //height: 100%;
-  //min-height: 100%;
+  position: relative;
+  //idk
+  //font-size: 14px;
+  //padding: 0 40px;
+  //min-height: calc(100vh - 100px);
+  //min-height: -webkit-max-content;
+  //min-height: -moz-max-content;
+  //min-height: max-content;
+  //height: calc(100vh - 100px);
+  //width: 100%;
+  //margin: auto;
+  //idk
+  //idk2
+  //flex: 1 1;
+  //min-height: 580px;
+  //idk2
 
   &-week, &-header {
     &-day{
@@ -19,21 +31,18 @@
   }
 
   &-week{
-    position: absolute;
-    top: 0;
-    left: 0;
-
+    //position: absolute;
     width: 100%;
     min-height: 90vh;
-    height: 125vh;
+    height: 100%;
+    overflow: auto;
   }
 
   &-month{
     display: flex;
     //flex: 1 0;
     flex-direction: column;
-    min-width: 100vw;
-    width: 100vw;
+    width: 100%;
     min-height: 90vh;
     height: 100%;
     overflow: auto;
@@ -109,7 +118,6 @@
     border-left: 1px solid #DDD;
     border-bottom: 1px solid #DDD;
   }
-
   &-timelabel {
     font-size: 12px;
     display: block;
@@ -119,27 +127,28 @@
   }
 
   &-day &-event-container {
-    top: 0;
     bottom: 0;
-    right: 0;
     left: 0;
     position: absolute;
+    right: 0;
     margin-right: 10px;
-  }
-}
-
-.wrap {
-  position: relative;
-  overflow-y: scroll;
-  height: 85vh;
-
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;
+    top: 0;
   }
 
 }
+
+.event {
+  height: 48px;
+  position: absolute;
+  flex: 1 1;
+  color: white;
+  background-color: black;
+  border: 2px solid blue;
+  margin: 1px;
+  padding: 1px;
+  border-radius: 10px
+}
+
 .month-event {
   height: 20px;
   color: white;
