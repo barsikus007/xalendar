@@ -2,7 +2,7 @@ export default function Selector(props){
   return(
     <div className="header-selector">
       <label>
-        <select defaultValue={props.currentType} onChange={
+        <select title="type-selector" defaultValue={props.currentType} onChange={
           (e) => {
             props.selectType(e.target.value)
           }}>

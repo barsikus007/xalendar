@@ -19,9 +19,11 @@ export default function Calendar(props) {
   } else if (props.type === TYPES.day) {
     start = props.currentDate.format('YYYY-MM-DD')
     calendar = (
-      <div className="calendar-week">
-        <Timetable />
-        <Day date={props.currentDate.format('YYYY-MM-DD')} standalone />
+      <div className="wrap">
+        <div className="calendar-week">
+          <Timetable />
+          <Day date={props.currentDate.format('YYYY-MM-DD')} standalone />
+        </div>
       </div>
     )
   }

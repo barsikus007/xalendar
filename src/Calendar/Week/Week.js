@@ -3,11 +3,10 @@ import Timetable from "../Timetable/Timetable";
 import moment from "moment";
 import useFetch from "react-fetch-hook";
 import {useEffect} from "react";
+import EventService from "../../Service";
 
 export default function Week(props) {
-  const { isLoading, data: eventsRaw, error } = useFetch(
-    `http://165.22.72.61/events?userId=269788&startDate=${props.start}&endDate=${props.end}`
-  )
+  const { isLoading, data: eventsRaw, error } = useFetch(EventService.getEvents(props.start, props.end))
 
   useEffect(() => {
     if (eventsRaw !== undefined) eventsRaw.length = 0
@@ -25,13 +24,17 @@ export default function Week(props) {
       eventsByDate[moment(event.start_date).format('YYYY-MM-DD')].push(event)
     })
   }
+  const el = document.querySelector('.wrap')
+  if (!!el) el.scrollTop = 1000
   return (
-    <div className="calendar-week">
-      <Timetable />
-      {Array.from({length: 7}, (x, n) => {
-        const day = moment(props.start).add(n, 'days').format('YYYY-MM-DD')
-        return <Day key={day} day={day} events={eventsByDate[day]} />
-      })}
+    <div className="wrap">
+      <div className="calendar-week">
+        <Timetable />
+        {Array.from({length: 7}, (x, n) => {
+          const day = moment(props.start).add(n, 'days').format('YYYY-MM-DD')
+          return <Day key={day} day={day} events={eventsByDate[day]} />
+        })}
+      </div>
     </div>
   )
 }

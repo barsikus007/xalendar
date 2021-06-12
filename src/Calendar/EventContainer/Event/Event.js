@@ -1,3 +1,4 @@
+import './Event.sass'
 import moment from "moment";
 
 export default function Event(props) {
@@ -8,20 +9,21 @@ export default function Event(props) {
   const startTime = (moment(props.event.start_date).hour()-3)*60 + moment(props.event.start_date).minute() // TODO kostil
   const endTime = (moment(props.event.end_date).hour()-3)*60 + moment(props.event.end_date).minute()
   const eventStyle = {
+    backgroundColor: props.event.color,
     top: `${startTime/1440*100}%`,
-    height: `${endTime/1440*100 - startTime/1440*100}%`,
+    height: `calc(${endTime/1440*100 - startTime/1440*100}% - 7px)`,
     left: `0%`,
-    width: `100%`,
+    width: `calc(100% - 10px)`,
   }
   return (
     <div className="event" style={eventStyle}>
-      <div>
+      <div className="event-text">
         {props.event.name}
       </div>
-      <div>
+      <div className="event-text">
         {props.event.theme}
       </div>
-      <div>
+      <div className="event-text">
         {props.event.aud}
       </div>
     </div>

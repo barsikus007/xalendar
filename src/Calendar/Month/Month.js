@@ -2,11 +2,10 @@ import MonthWeek from "./MonthWeek/MonthWeek";
 import moment from "moment";
 import useFetch from "react-fetch-hook";
 import {useEffect} from "react";
+import EventService from "../../Service";
 
 export default function Month(props) {
-  const { isLoading, data: eventsRaw, error } = useFetch(
-    `http://165.22.72.61/events?userId=269788&startDate=${props.start}&endDate=${props.end}`
-  )
+  const { isLoading, data: eventsRaw, error } = useFetch(EventService.getEvents(props.start, props.end))
 
   useEffect(() => {
     if (eventsRaw !== undefined) eventsRaw.length = 0

@@ -1,10 +1,11 @@
 import Timeslot from '../Timeslot/Timeslot';
 import EventContainer from "../EventContainer/EventContainer";
 import useFetch from "react-fetch-hook";
+import EventService from "../../Service";
 
 export default function Day(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(
-    `http://165.22.72.61/events?userId=269788&startDate=${props.date}&endDate=${props.date}`,
+    EventService.getEvents(props.date, props.date),
     { depends: [props.standalone] }
   )
   let events = props?.events ? props.events : []
