@@ -8,7 +8,7 @@ export default function Event(props) {
   // moment.duration(moment(props.event.end_date).format('HH:mm')).asMinutes()
   const startTime = (moment(props.event.start_date).hour()-3)*60 + moment(props.event.start_date).minute() // TODO kostil
   const endTime = (moment(props.event.end_date).hour()-3)*60 + moment(props.event.end_date).minute()
-  const eventStyle = {
+  const style = {
     backgroundColor: props.event.color,
     top: `${startTime/1440*100}%`,
     height: `calc(${endTime/1440*100 - startTime/1440*100}% - 7px)`,
@@ -16,7 +16,7 @@ export default function Event(props) {
     width: `calc(100% - 10px)`,
   }
   return (
-    <div className="event" style={eventStyle}>
+    <div className="event" style={style}>
       <div className="event-text">
         {props.event.name}
       </div>

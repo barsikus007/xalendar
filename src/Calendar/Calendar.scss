@@ -34,7 +34,7 @@
     flex-direction: column;
     min-width: 100vw;
     width: 100vw;
-    min-height: 90vh;
+    min-height: 85vh;
     height: 100%;
     overflow: auto;
     &-week{
@@ -126,27 +126,16 @@
     position: absolute;
     margin-right: 10px;
   }
-}
 
-.wrap {
-  position: relative;
-  overflow-y: scroll;
-  height: 85vh;
+  .wrap {
+    position: relative;
+    overflow-y: scroll;
+    height: 85vh;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
-
-}
-.month-event {
-  height: 20px;
-  color: white;
-  background-color: black;
-  border: 2px solid blue;
-  margin: 1px;
-  padding: 1px;
-  border-radius: 10px;
-  text-align: start;
 }

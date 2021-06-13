@@ -1,4 +1,4 @@
-import './App.scss';
+import './App.sass';
 import Header from './Header/Header';
 import Calendar from './Calendar/Calendar';
 import moment from 'moment';
