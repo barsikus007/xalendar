@@ -6,8 +6,8 @@ export default function Event(props) {
   //2 or more events
   // moment.duration(moment(props.event.start_date).format('HH:mm')).asMinutes()
   // moment.duration(moment(props.event.end_date).format('HH:mm')).asMinutes()
-  const startTime = (moment(props.event.start_date).hour()-3)*60 + moment(props.event.start_date).minute() // TODO kostil
-  const endTime = (moment(props.event.end_date).hour()-3)*60 + moment(props.event.end_date).minute()
+  const startTime = moment.duration(moment(props.event.start_date).format('HH:mm')).asMinutes() - 180 // TODO kostil
+  const endTime = moment.duration(moment(props.event.end_date).format('HH:mm')).asMinutes() - 180
   const style = {
     backgroundColor: props.event.color,
     top: `${startTime/1440*100}%`,

@@ -1,20 +1,15 @@
 .event
   position: absolute
   border-radius: 4px
-  overflow: hidden
-  text-overflow: ellipsis
-
-  color: white
   background-color: black
-
   min-height: 20px
-  height: 48px
-
   margin: 3px
   padding-left: 8px
-  padding-right: -8px
   &__min
-    min-height: 20px
     height: 20px
   &-text
+    color: white
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
     padding-inline: 2px
