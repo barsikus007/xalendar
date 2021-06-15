@@ -4,12 +4,14 @@ import Calendar from './Calendar/Calendar';
 import moment from 'moment';
 import {useState, useEffect} from 'react';
 import { TYPES, checkDate } from './Utils';
+import SideMenu from "./Header/SideMenu/SideMenu";
 
 export default function App() {
   const locationParams = window.location.href.split('/')
 
   const [type, setType] = useState((locationParams[3] in TYPES) ? locationParams[3] : 'week')
   const [currentDate, setCurrentDate] = useState(checkDate(locationParams))
+  const [isSideMenuOpen, setSideMenuState] = useState(false);
 
   useEffect(() => {
     const locationParams = window.location.href.split('/')
@@ -24,7 +26,10 @@ export default function App() {
 
   return (
     <div>
-      <Header currentType={type} selectType={setType} />
+      {isSideMenuOpen &&
+      <SideMenu sideMenuState={isSideMenuOpen} setSideMenuState={setSideMenuState} />
+      }
+      <Header currentType={type} selectType={setType} sideMenuState={isSideMenuOpen} setSideMenuState={setSideMenuState} />
       <Calendar type={type} currentDate={currentDate} setCurrentDate={setCurrentDate} />
     </div>
   )

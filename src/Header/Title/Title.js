@@ -1,9 +1,14 @@
 import logo from "../../img/logo.png";
 
-export default function Title() {
+
+export default function Title(props) {
+  const toggleSideMenu =() => {
+    props.setSideMenuState((isSideMenuOpen) => !isSideMenuOpen)
+  }
+
   return(
     <div className="header-title">
-      <a href="/"> <img src={logo} alt="logo"/></a>
+       <img src={logo} alt="logo" onClick={() => {toggleSideMenu()}}/>
       <h3>Xalendar</h3>
     </div>
   )
