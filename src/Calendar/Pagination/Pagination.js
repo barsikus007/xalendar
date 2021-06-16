@@ -1,5 +1,8 @@
+import './Pagination.sass'
 import {TYPES} from "../../Utils";
 import moment from "moment";
+import {Fab} from "@material-ui/core";
+import {NavigateBefore, NavigateNext} from "@material-ui/icons";
 
 export default function Pagination(props) {
   let name
@@ -30,9 +33,11 @@ export default function Pagination(props) {
 
   return (
     <div className="calendar-pagination">
-      <button onClick={prevDatePage}>{"<"}</button>
-      <div>{name}</div>
-      <button onClick={nextDatePage}>{">"}</button>
+      <div className="calendar-pagination-buttons">
+        <Fab color="primary" aria-label="Next" size="small" onClick={prevDatePage}><NavigateBefore /></Fab>
+        <Fab color="primary" aria-label="Prev" size="small" onClick={nextDatePage}><NavigateNext /></Fab>
+      </div>
+      <div className="calendar-pagination-name">{name}</div>
     </div>
   )
 }

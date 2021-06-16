@@ -9,16 +9,18 @@ import EventModal from "./EventModal/EventModal";
 export default function Event(props) {
   const startTime = moment.duration(moment(props.event.startdate).format('HH:mm')).asMinutes()
   const endTime = moment.duration(moment(props.event.enddate).format('HH:mm')).asMinutes()
-
+  const eventWidth = 100/props.event.overlapCount
+  const eventPos = props.event.position
   const style = {
     backgroundColor: props.event.color,
     top: `${startTime/1440*100}%`,
     height: `${endTime/1440*100 - startTime/1440*100}%`,
-    left: `0%`,
-    width: `calc(100% - 10px)`,
+    // left: `0%`,
+    // width: `calc(100% - 10px)`,
+    left: `${eventWidth*(eventPos-1)}%`,
+    width: `calc(${eventWidth}% - 10px)`,
   }
-  const [className, setClass] = useState('event')
-  console.log(props.event)
+  const [className, setClass] = useState('event') // TODO overflow: hidden if open to stop scroll
   return (
     <Popup
       keepTooltipInside=".wrap"

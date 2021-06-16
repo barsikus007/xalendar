@@ -1,28 +1,44 @@
+import {Info, Assignment, Description, Person, ViewModule, LocationOn} from '@material-ui/icons';
+
 export default function EventModal(props) {
+  const style = { fontSize: 20 }
   return (
     <div className="event-popup">
       <div>
-        {props.event.id}
+        <Info style={style} />
+        <div>
+          {props.event.id}
+        </div>
       </div>
-      <br/>
       <div>
-        {props.event.name}
+        <Assignment style={style} />
+        <div>
+          {props.event.name}
+        </div>
       </div>
-      <br/>
       <div>
-        {props.event.theme}
+        <Description style={style} />
+        <div>
+          {props.event.theme}
+        </div>
       </div>
-      <br/>
       <div>
-        {props.event.teacher}
+        <Person style={style} />
+        <div>
+          {props.event.teacher}
+        </div>
       </div>
-      <br/>
       <div>
-        {props.event.modulename}
+        <ViewModule style={style} />
+        <div>
+          {props.event.modulename}
+        </div>
       </div>
-      <br/>
       <div>
-        {props.event.place}
+        <LocationOn style={style} />
+        <div>
+          {props.event.place}
+        </div>
       </div>
     </div>
   )
