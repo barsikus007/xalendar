@@ -8,7 +8,11 @@ export default function CalendarHeader(props) {
     header.push(
       <div key={day} className="calendar-header-day">
         <div>{moment(props.start).add(x, 'days').format('ddd')}</div>
-        {(props.type !== 'month') ? <div>{moment(props.start).add(x, 'days').format('DD')}</div> : null}
+        {(props.type === 'week') ?
+          <a href={'/day' + moment(props.day).format('/YYYY/MM/DD')}>{moment(props.start).add(x, 'days').format('DD')}</a> :
+          (props.type === 'day') ?
+          <div>{moment(props.start).add(x, 'days').format('DD')}</div> :
+          null}
       </div>
     )
   }

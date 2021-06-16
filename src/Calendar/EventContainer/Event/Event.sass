@@ -1,10 +1,18 @@
 .event
   position: absolute
-  border-radius: 4px
+  border-radius: 6px
+  border: white 1px solid
+
   background-color: black
   min-height: 20px
-  margin: 3px
   padding-left: 8px
+
+  cursor: pointer
+
+  &__selected
+    border: green 5px solid !important
+    z-index: 3
+
   &__min
     height: 20px
   &-text
@@ -12,4 +20,6 @@
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
-    padding-inline: 2px
+    padding: 1px
+
+    cursor: pointer

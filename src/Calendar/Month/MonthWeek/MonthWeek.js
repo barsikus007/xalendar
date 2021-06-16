@@ -7,10 +7,10 @@ export default function MonthWeek(props) {
   // console.log(props.events)
   // fastcoded костыль
   Array.from(props.events).forEach((event) => {
-    eventsByDay[moment(event.start_date).format('YYYY-MM-DD')] = []
+    eventsByDay[moment(event.startdate).format('YYYY-MM-DD')] = []
   })
   Array.from(props.events).forEach((event) => {
-    eventsByDay[moment(event.start_date).format('YYYY-MM-DD')].push(event)
+    eventsByDay[moment(event.startdate).format('YYYY-MM-DD')].push(event)
   })
   // fastcoded костыль
   for (const x of Array(7).keys()) {

@@ -10,7 +10,7 @@ export default function MonthEvent(props) {
   }
   return (
     <div className="month-event" style={style}>
-      {moment(props.event.start_date).add(-3, 'hours').format('HH:mm ')}{props.event.theme}
+      {moment(props.event.startdate).format('HH:mm ')}{props.event.theme}
     </div>
   )
 }

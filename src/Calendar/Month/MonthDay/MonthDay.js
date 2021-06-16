@@ -9,7 +9,9 @@ export default function MonthDay(props) {
   if (moment().format('YYYY-MM-DD')===moment(props.day).format('YYYY-MM-DD')) classes.push("calendar-month-week-day__today")
   return (
     <div className={classes.join(' ')}>
-      {moment(props.day).date()}
+      <a className="day-link" href={'/day' + moment(props.day).format('/YYYY/MM/DD')}>
+        {moment(props.day).date()}
+      </a>
       <MonthEventContainer events={events} />
     </div>
   )

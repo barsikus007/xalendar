@@ -1,31 +1,44 @@
 import './Event.sass'
 import moment from "moment";
+import {useState} from "react";
+import Popup from "reactjs-popup";
+
+import 'reactjs-popup/dist/index.css';
+import EventModal from "./EventModal/EventModal";
 
 export default function Event(props) {
-  // time 0000-2359 : 0-100%
-  //2 or more events
-  // moment.duration(moment(props.event.start_date).format('HH:mm')).asMinutes()
-  // moment.duration(moment(props.event.end_date).format('HH:mm')).asMinutes()
-  const startTime = moment.duration(moment(props.event.start_date).format('HH:mm')).asMinutes() - 180 // TODO kostil
-  const endTime = moment.duration(moment(props.event.end_date).format('HH:mm')).asMinutes() - 180
+  const startTime = moment.duration(moment(props.event.startdate).format('HH:mm')).asMinutes()
+  const endTime = moment.duration(moment(props.event.enddate).format('HH:mm')).asMinutes()
+
   const style = {
     backgroundColor: props.event.color,
     top: `${startTime/1440*100}%`,
-    height: `calc(${endTime/1440*100 - startTime/1440*100}% - 7px)`,
+    height: `${endTime/1440*100 - startTime/1440*100}%`,
     left: `0%`,
     width: `calc(100% - 10px)`,
   }
+  const [className, setClass] = useState('event')
+  console.log(props.event)
   return (
-    <div className="event" style={style}>
-      <div className="event-text">
-        {props.event.name}
-      </div>
-      <div className="event-text">
-        {props.event.theme}
-      </div>
-      <div className="event-text">
-        {props.event.aud}
-      </div>
-    </div>
+    <Popup
+      keepTooltipInside=".wrap"
+      trigger={
+        <div className={className} style={style} onClick={()=>{ setClass('event') }}>
+          <div className="event-text">
+            {props.event.name}
+          </div>
+          <div className="event-text">
+            {props.event.theme}
+          </div>
+          <div className="event-text">
+            {props.event.aud}
+          </div>
+          <div className="event-text">
+            {moment(props.event.startdate).format('HH:mm')}-{moment(props.event.enddate).format('HH:mm')}
+          </div>
+        </div>
+      }>
+        <EventModal event={props.event}/>
+    </Popup>
   )
 }

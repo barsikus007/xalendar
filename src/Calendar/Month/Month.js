@@ -21,7 +21,7 @@ export default function Month(props) {
       console.error('ERROR TODO POP-IT')
   } else if (!isLoading) {
     Array.from(eventsRaw).forEach((event) => {
-      eventsByWeek[moment(event.start_date).startOf('isoWeek').format('YYYY-MM-DD')].push(event)
+      eventsByWeek[moment(event.startdate).startOf('isoWeek').format('YYYY-MM-DD')].push(event)
     })
   }
   return (
