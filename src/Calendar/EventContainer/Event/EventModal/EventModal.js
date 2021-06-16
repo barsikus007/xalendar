@@ -1,4 +1,5 @@
-import {Info, Assignment, Description, Person, ViewModule, LocationOn} from '@material-ui/icons';
+import {Info, QueryBuilder, Assignment, Description, Person, ViewModule, LocationOn} from '@material-ui/icons';
+import moment from "moment";
 
 export default function EventModal(props) {
   const style = { fontSize: 20 }
@@ -8,6 +9,12 @@ export default function EventModal(props) {
         <Info style={style} />
         <div>
           {props.event.id}
+        </div>
+      </div>
+      <div>
+        <QueryBuilder style={style} />
+        <div>
+          {moment(props.event.startdate).format('HH:mm')}-{moment(props.event.enddate).format('HH:mm')}
         </div>
       </div>
       <div>

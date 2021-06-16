@@ -15,8 +15,6 @@ export default function Event(props) {
     backgroundColor: props.event.color,
     top: `${startTime/1440*100}%`,
     height: `${endTime/1440*100 - startTime/1440*100}%`,
-    // left: `0%`,
-    // width: `calc(100% - 10px)`,
     left: `${eventWidth*(eventPos-1)}%`,
     width: `calc(${eventWidth}% - 10px)`,
   }
@@ -26,16 +24,28 @@ export default function Event(props) {
       keepTooltipInside=".wrap"
       trigger={
         <div className={className} style={style} onClick={()=>{ setClass('event') }}>
-          <div className="event-text">
+          <div
+            className="event-text"
+            title={props.event.name}
+          >
             {props.event.name}
           </div>
-          <div className="event-text">
+          <div
+            className="event-text"
+            title={props.event.theme}
+          >
             {props.event.theme}
           </div>
-          <div className="event-text">
+          <div
+            className="event-text"
+            title={props.event.aud}
+          >
             {props.event.aud}
           </div>
-          <div className="event-text">
+          <div
+            className="event-text"
+            title={`${moment(props.event.startdate).format('HH:mm')}-${moment(props.event.enddate).format('HH:mm')}`}
+          >
             {moment(props.event.startdate).format('HH:mm')}-{moment(props.event.enddate).format('HH:mm')}
           </div>
         </div>
