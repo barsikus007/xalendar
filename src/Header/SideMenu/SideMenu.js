@@ -16,9 +16,9 @@ export default function SideMenu(props) {
     <div className="side-menu" ref={sideMenu}>
       <span onClick={() => {toggleSideMenu()}}> &times;</span>
       <ul>
-        <li> <h3>Aboba</h3></li>
+        <li> <h3></h3></li>
         <li><h3>
-          Side menu
+
         </h3></li>
 
       </ul>
