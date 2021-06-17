@@ -22,7 +22,7 @@ export default function Calendar(props) {
       <div className="wrap">
         <div className="calendar-week">
           <Timetable />
-          <Day date={props.currentDate.format('YYYY-MM-DD')} standalone />
+          <Day day={props.currentDate.format('YYYY-MM-DD')} standalone />
         </div>
       </div>
     )

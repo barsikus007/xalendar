@@ -21,7 +21,7 @@ export default function Week(props) {
       console.error('ERROR TODO POP-IT')
   } else if (!isLoading) {
     Array.from(eventsRaw).forEach((event) => {
-      eventsByDate[moment(event.startdate).format('YYYY-MM-DD')].push(event)
+      eventsByDate[moment(event.startdate).format('YYYY-MM-DD')].push(event) // TODO ABORT
     })
   }
   const el = document.querySelector('.wrap')

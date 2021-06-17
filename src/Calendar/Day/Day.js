@@ -5,7 +5,7 @@ import EventService from "../../Service";
 
 export default function Day(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(
-    EventService.getEvents(props.date, props.date),
+    EventService.getEvents(props.day, props.day),
     { depends: [props.standalone] }
   )
   let events = props?.events ? props.events : []
@@ -20,7 +20,7 @@ export default function Day(props) {
   return (
     <div className="calendar-day">
       {Array.from({length: 24}, (x, n) => <Timeslot key={n} />)}
-      <EventContainer events={events} />
+      <EventContainer events={events} date={props.day} />
     </div>
   )
 }

@@ -1,16 +1,12 @@
 import "./EventContainer.sass"
 import Event from "./Event/Event";
 import moment from "moment";
-
-// const isCrossing = (event1, event2) => {
-//   return (event1.start_date <= event2.end_date) && (event1.end_date >= event2.start_date)
-// }
+import RedLine from "./RedLine/RedLine";
 
 export default function EventContainer(props) {
 
   const events = Array.from(props.events)
   events.sort((event1, event2) => { return Date.parse(event1.startdate) - Date.parse(event2.startdate) })
-  // const eventsCopy = events.slice()
   const timetable = Array.from({length: 1440}, () => [])
   events.forEach(event => {
     let position = 1
@@ -34,11 +30,11 @@ export default function EventContainer(props) {
       if (overlapCount < timetable[i].length) overlapCount = timetable[i].length
     }
     event.overlapCount = overlapCount
-    // console.log(`${event.position}/${overlapCount}`)
   })
   return (
     <div className="calendar-event-container">
       {events.map((x, n) => <Event key={n} event={x}/>)}
+      {(moment().isSame(moment(props.date), 'day')) ? <RedLine /> : null}
     </div>
   )
 }
