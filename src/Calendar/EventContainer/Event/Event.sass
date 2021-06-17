@@ -33,6 +33,34 @@
     display: flex
     flex-direction: column
     //height: 100%
-    *
+    &-row
+      display: flex
       vertical-align: middle
-      display: inline-block
+      //display: inline-block
+      padding-top: 10px
+      padding-left: 10px
+      font-size: 14px
+      font-weight: 400
+      letter-spacing: .2px
+      line-height: 20px
+      font-family: Roboto,Arial,sans-serif
+
+
+.popup-arrow
+  display: none
+.popup-content
+  margin: auto
+  background: rgb(255, 255, 255)
+  padding: 10px
+  border: 1px solid #d7d7d7 //
+[role='tooltip'].popup-content
+
+  //box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px
+  box-shadow: 0 0 3px rgba(0,0,0,.16)
+  border-radius: 5px //
+  width: 400px
+
+.popup-overlay
+  background: rgba(0, 0, 0, 0.5)
+[data-popup='tooltip'].popup-overlay
+  background: transparent

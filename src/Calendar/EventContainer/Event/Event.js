@@ -1,10 +1,9 @@
 import './Event.sass'
+import EventModal from "./EventModal/EventModal";
 import moment from "moment";
 import {useState} from "react";
 import Popup from "reactjs-popup";
 
-import 'reactjs-popup/dist/index.css';
-import EventModal from "./EventModal/EventModal";
 
 export default function Event(props) {
   const startTime = moment.duration(moment(props.event.startdate).format('HH:mm')).asMinutes()
