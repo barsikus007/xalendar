@@ -6,7 +6,6 @@ export default function SideMenu(props) {
 
   const toggleSideMenu =() => {
     props.setSideMenuState((isSideMenuOpen) => !isSideMenuOpen);
-
   }
   const sideMenu = useRef(null);
   useOnClickOutside(sideMenu, () => props.setSideMenuState((isSideMenuOpen) => !isSideMenuOpen));
