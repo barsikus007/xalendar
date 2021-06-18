@@ -48,11 +48,11 @@ export default function Toolbar(props) {
 
   return (
     <div className="calendar-toolbar">
-      <div className="calendar-pagination-buttons">
+      <div className="calendar-toolbar-buttons">
         <Fab color="primary" aria-label="Next" size="small" onClick={prevPage}><NavigateBefore /></Fab>
         <Fab color="primary" aria-label="Prev" size="small" onClick={nextPage}><NavigateNext /></Fab>
       </div>
-      <div className="calendar-pagination-name">{name}</div>
+      <div className="calendar-toolbar-name">{name}</div>
       {isAdmin &&
           <div>
             <Fab color="primary" aria-label="Add" size="small" onClick={() => {toggleCreateEventMenuVisibility()}}><Add /></Fab>
