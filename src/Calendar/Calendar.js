@@ -3,7 +3,7 @@ import Day from "./Day/Day";
 import Week from "./Week/Week";
 import Month from "./Month/Month";
 import Timetable from "./Timetable/Timetable";
-import Pagination from "./Pagination/Pagination";
+import Toolbar from "./Toolbar/Toolbar";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import {getWeek, getMonth, TYPES} from "../Utils";
 
@@ -27,7 +27,7 @@ export default function Calendar(props) {
   }
   return (
     <div className="calendar">
-      <Pagination start={start} end={end} type={props.type} currentDate={props.currentDate} setCurrentDate={props.setCurrentDate} />
+      <Toolbar start={start} end={end} type={props.type} currentDate={props.currentDate} setCurrentDate={props.setCurrentDate} />
       <CalendarHeader type={props.type} start={start} />
       <div className="wrap">
         {calendar}

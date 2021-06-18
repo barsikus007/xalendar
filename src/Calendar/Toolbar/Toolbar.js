@@ -7,7 +7,7 @@ import {useRef, useState} from "react";
 import CreateEventMenu from "./CreateEventMenu/CreateEventMenu";
 import useOnClickOutside from "../../Header/Utilities/useOnClickOutside";
 
-export default function Pagination(props) {
+export default function Toolbar(props) {
   let name
   const isAdmin =true
   const [isCreateEventMenuOpen, setCreateEventMenuOpen] = useState(false);
