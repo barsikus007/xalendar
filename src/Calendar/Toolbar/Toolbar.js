@@ -1,4 +1,4 @@
-import './Pagination.sass'
+import './Toolbar.sass'
 import {TYPES} from "../../Utils";
 import moment from "moment";
 import {Fab} from "@material-ui/core";
@@ -9,7 +9,7 @@ import useOnClickOutside from "../../Header/Utilities/useOnClickOutside";
 
 export default function Toolbar(props) {
   let name
-  const isAdmin =true
+  const isAdmin = false
   const [isCreateEventMenuOpen, setCreateEventMenuOpen] = useState(false);
 
   const prevPage = function () {
@@ -47,7 +47,7 @@ export default function Toolbar(props) {
   }
 
   return (
-    <div className="calendar-pagination">
+    <div className="calendar-toolbar">
       <div className="calendar-pagination-buttons">
         <Fab color="primary" aria-label="Next" size="small" onClick={prevPage}><NavigateBefore /></Fab>
         <Fab color="primary" aria-label="Prev" size="small" onClick={nextPage}><NavigateNext /></Fab>
