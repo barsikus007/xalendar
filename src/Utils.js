@@ -25,3 +25,5 @@ export const getMonth = (date) => {
     moment(endOfMonth).endOf('isoWeek').format('YYYY-MM-DD')
   ]
 }
+
+export const getNowMinutes = () => moment.duration(moment().format("HH:mm")).asMinutes()

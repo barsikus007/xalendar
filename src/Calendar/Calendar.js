@@ -19,11 +19,9 @@ export default function Calendar(props) {
   } else if (props.type === TYPES.day) {
     start = props.currentDate.format('YYYY-MM-DD')
     calendar = (
-      <div className="wrap">
-        <div className="calendar-week">
-          <Timetable />
-          <Day day={props.currentDate.format('YYYY-MM-DD')} standalone />
-        </div>
+      <div className="calendar-week">
+        <Timetable />
+        <Day day={props.currentDate.format('YYYY-MM-DD')} standalone />
       </div>
     )
   }
@@ -31,7 +29,9 @@ export default function Calendar(props) {
     <div className="calendar">
       <Pagination start={start} end={end} type={props.type} currentDate={props.currentDate} setCurrentDate={props.setCurrentDate} />
       <CalendarHeader type={props.type} start={start} />
-      {calendar}
+      <div className="wrap">
+        {calendar}
+      </div>
     </div>
   )
 }

@@ -19,7 +19,7 @@ export default function Month(props) {
   } else if (!isLoading) {
     Array.from(eventsRaw).forEach((event) => {
       const eventWeekStart = moment(event.startdate).startOf('isoWeek').format('YYYY-MM-DD')
-      if (eventWeekStart in eventsByWeek) eventsByWeek[eventWeekStart].push(event) // TODO ABORT
+      if (eventWeekStart in eventsByWeek) eventsByWeek[eventWeekStart].push(event)
     })
   }
 

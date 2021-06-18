@@ -7,8 +7,18 @@ import {useEffect, useState} from "react";
 export default function EventContainer(props) {
   const [redline, setRedline] = useState(moment().isSame(moment(props.date), 'day'))
   const events = Array.from(props.events)
-  events.sort((event1, event2) => { return Date.parse(event1.startdate) - Date.parse(event2.startdate) })
   const timetable = Array.from({length: 1440}, () => [])
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setRedline(moment().isSame(moment(props.date), 'day')),
+      60000
+    )
+    return () => clearInterval(interval)
+  }, [props])
+
+  events.sort((event1, event2) => Date.parse(event1.startdate) - Date.parse(event2.startdate))
+
   events.forEach(event => {
     let position = 1
     for (
@@ -21,6 +31,7 @@ export default function EventContainer(props) {
     }
     event.position = position
   })
+
   events.forEach(event => {
     let overlapCount = 1
     for (
@@ -32,13 +43,7 @@ export default function EventContainer(props) {
     }
     event.overlapCount = overlapCount
   })
-  useEffect(() => {
-    const interval = setInterval(
-      () => setRedline(moment().isSame(moment(props.date), 'day')),
-      60000
-    )
-    return () => clearInterval(interval)
-  }, [props])
+
   return (
     <div className="calendar-event-container">
       {events.map((x, n) => <Event key={n} event={x} />)}

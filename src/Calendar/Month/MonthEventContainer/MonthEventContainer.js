@@ -1,9 +1,9 @@
 import MonthEvent from "./MonthEvent/MonthEvent";
 
 export default function MonthEventContainer(props) {
-  // TODO Calculate max count
-  let events = Array.from(props.events)
-  events.sort((el1, el2) => { return Date.parse(el1.startdate) - Date.parse(el2.startdate) })
+  const events = Array.from(props.events)
+
+  events.sort((event1, event2) => Date.parse(event1.startdate) - Date.parse(event2.startdate))
 
   return (
       <div className="calendar-month-event-container">

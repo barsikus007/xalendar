@@ -1,6 +1,6 @@
 import "./RedLine.sass"
-import moment from "moment";
 import {useEffect, useState} from "react";
+import {getNowMinutes} from "../../../Utils";
 
 const baseStyle = (position) => {
   return {
@@ -12,12 +12,12 @@ const baseStyle = (position) => {
   }
 }
 
-const getNowMinutes = () => moment.duration(moment().format("HH:mm")).asMinutes()
-
 export default function RedLine() {
   const [position, setPosition] = useState(getNowMinutes())
   const [style, setStyle] = useState(baseStyle(position))
+
   useEffect(() => setStyle(baseStyle(position)), [position])
+
   useEffect(() => {
     const interval = setInterval(
       () => setPosition(getNowMinutes()),
@@ -25,6 +25,7 @@ export default function RedLine() {
     )
     return () => clearInterval(interval)
   }, [])
+
   return (
     <div style={style} className="event-redline" />
   )

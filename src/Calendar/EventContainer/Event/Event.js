@@ -4,7 +4,6 @@ import moment from "moment";
 import {useState} from "react";
 import Popup from "reactjs-popup";
 
-
 export default function Event(props) {
   const startTime = moment.duration(moment(props.event.startdate).format('HH:mm')).asMinutes()
   const endTime = moment.duration(moment(props.event.enddate).format('HH:mm')).asMinutes()

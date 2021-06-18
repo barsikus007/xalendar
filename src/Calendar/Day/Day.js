@@ -8,6 +8,7 @@ export default function Day(props) {
     EventService.getEvents(props.day, props.day),
     { depends: [props.standalone] }
   )
+
   let events = props?.events ? props.events : []
 
   if (props.standalone) {
@@ -16,7 +17,11 @@ export default function Day(props) {
     } else if (!isLoading) {
       events = eventsRaw
     }
+
+    const el = document.querySelector('.wrap')
+    if (!!el) el.scrollTop = 1000
   }
+
   return (
     <div className="calendar-day">
       {Array.from({length: 24}, (x, n) => <Timeslot key={n} />)}
