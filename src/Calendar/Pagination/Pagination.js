@@ -2,7 +2,10 @@ import './Pagination.sass'
 import {TYPES} from "../../Utils";
 import moment from "moment";
 import {Fab} from "@material-ui/core";
-import {NavigateBefore, NavigateNext} from "@material-ui/icons";
+import {Add, NavigateBefore, NavigateNext} from "@material-ui/icons";
+import {useRef, useState} from "react";
+import CreateEventMenu from "./CreateEventMenu/CreateEventMenu";
+import useOnClickOutside from "../../Header/Utilities/useOnClickOutside";
 
 export default function Pagination(props) {
   let name

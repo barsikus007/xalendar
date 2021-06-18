@@ -2,7 +2,7 @@ import Day from "../Day/Day";
 import Timetable from "../Timetable/Timetable";
 import moment from "moment";
 import useFetch from "react-fetch-hook";
-import EventService from "../../Service";
+import {EventService} from "../../Service";
 
 export default function Week(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(EventService.getEvents(props.start, props.end))

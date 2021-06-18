@@ -2,12 +2,10 @@ import icon from "../../img/img.png"
 import {useState, useRef} from "react";
 import UserCard from "./UserCard/UserCard";
 import useOnClickOutside from '../Utilities/useOnClickOutside'
-import CreateEventMenu from "./CreateEventMenu/CreateEventMenu";
 import UserAuthentication from "./UserAuthentication/UserAuthentication";
 
 export default function Login() {
   const [isModalOpen,setModalOpen] = useState(false);
-  const [isCreateEventMenuOpen, setCreateEventMenuOpen] = useState(false);
   const [isAuthenticationMenuOpen,setAuthenticationMenuOpen] = useState(false);
 
   const modalRef = useRef(null);
@@ -30,7 +28,7 @@ export default function Login() {
       <img className="header-login__icon" src={icon} onClick={() => {toggleUserCardVisibility()}} alt="icon"/>
       {isModalOpen &&
       <div ref={modalRef} className="header-login-menu">
-        <UserCard userName={userName} setCreateEventMenuOpen={setCreateEventMenuOpen} setAuthenticationMenuState={setAuthenticationMenuOpen} />
+        <UserCard userName={userName} setAuthenticationMenuState={setAuthenticationMenuOpen} />
       </div>
       }
 

@@ -1,14 +1,11 @@
 import icon from "../../../img/img.png";
 
 export default function UserCard(props){
-  const toggleEventMenuVisibility =() => {
-    props.setCreateEventMenuOpen((visible)=>!visible)
-  }
   const toggleAuthenticationVisibility =() =>{
     props.setAuthenticationMenuState((visible)=>!visible)
   }
-  const isAdmin = false
-  const adminStyle ="header-login-menu_admin"
+  // const isAdmin = false
+  // const adminStyle ="header-login-menu_admin"
   const userStyle ="header-login-menu_user"
 
   return(
@@ -27,5 +24,5 @@ export default function UserCard(props){
         </button>
       </ul>
     </div>
-  );
+  )
 }

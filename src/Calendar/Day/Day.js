@@ -1,7 +1,7 @@
 import Timeslot from '../Timeslot/Timeslot';
 import EventContainer from "../EventContainer/EventContainer";
 import useFetch from "react-fetch-hook";
-import EventService from "../../Service";
+import {EventService} from "../../Service";
 
 export default function Day(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(
