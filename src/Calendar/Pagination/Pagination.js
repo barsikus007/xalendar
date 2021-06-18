@@ -6,10 +6,11 @@ import {NavigateBefore, NavigateNext} from "@material-ui/icons";
 
 export default function Pagination(props) {
   let name
-  const prevDatePage = function () {
+
+  const prevPage = function () {
     props.setCurrentDate(moment(props.currentDate).add(-1, `${props.type}s`))
   }
-  const nextDatePage = function () {
+  const nextPage = function () {
     props.setCurrentDate(moment(props.currentDate).add(1, `${props.type}s`))
   }
 
@@ -34,8 +35,8 @@ export default function Pagination(props) {
   return (
     <div className="calendar-pagination">
       <div className="calendar-pagination-buttons">
-        <Fab color="primary" aria-label="Next" size="small" onClick={prevDatePage}><NavigateBefore /></Fab>
-        <Fab color="primary" aria-label="Prev" size="small" onClick={nextDatePage}><NavigateNext /></Fab>
+        <Fab color="primary" aria-label="Next" size="small" onClick={prevPage}><NavigateBefore /></Fab>
+        <Fab color="primary" aria-label="Prev" size="small" onClick={nextPage}><NavigateNext /></Fab>
       </div>
       <div className="calendar-pagination-name">{name}</div>
     </div>

@@ -1,10 +1,10 @@
 import './App.sass';
+import SideMenu from "./Header/SideMenu/SideMenu";
 import Header from './Header/Header';
 import Calendar from './Calendar/Calendar';
 import moment from 'moment';
 import {useState, useEffect} from 'react';
 import { TYPES, checkDate } from './Utils';
-import SideMenu from "./Header/SideMenu/SideMenu";
 
 export default function App() {
   const locationParams = window.location.href.split('/')

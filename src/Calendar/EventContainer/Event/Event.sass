@@ -10,8 +10,8 @@
   cursor: pointer
 
   &__selected
-    border: green 5px solid !important
-    //z-index: 5004 !important
+    box-shadow: 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%), 0 11px 15px -7px rgb(0 0 0 / 20%)
+    z-index: 5
 
   &__min
     height: 20px
@@ -34,9 +34,7 @@
   &-popup
     display: flex
     flex-direction: column
-    padding-top: 8px
-    padding-left: 8px
-    padding-right: 16px
+    padding: 10px
     flex: 0 0 300px
     -webkit-box-shadow: 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%), 0 11px 15px -7px rgb(0 0 0 / 20%)
     box-shadow: 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%), 0 11px 15px -7px rgb(0 0 0 / 20%)
@@ -46,22 +44,39 @@
       display: flex
       vertical-align: middle
       //display: inline-block
-      padding-top: 10px
-      padding-left: 10px
+      padding-top: 5px
+      padding-bottom: 5px
       font-size: 14px
       font-weight: 400
       letter-spacing: .2px
       line-height: 20px
       font-family: Roboto,Arial,sans-serif
 
+@keyframes anvil
+  0%
+    transform: scale(1) translateY(0px)
+    opacity: 0
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0)
+
+  1%
+    transform: scale(0.96) translateY(10px)
+    opacity: 0
+    box-shadow: 0 0 0 rgba(241, 241, 241, 0)
+
+  100%
+    transform: scale(1) translateY(0px)
+    opacity: 1
+    box-shadow: 0 0 500px rgba(241, 241, 241, 0)
 
 .popup-arrow
   display: none
 .popup-content
   margin: auto
   background: rgb(255, 255, 255)
-  padding: 10px
+  //padding: 10px
   border: 1px solid #d7d7d7 //
+
+  -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards
 
 [role='tooltip'].popup-content
 

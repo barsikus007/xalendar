@@ -2,8 +2,7 @@ import "./MonthEvent.sass"
 import moment from "moment";
 
 export default function MonthEvent(props) {
-  // Calculate max count
-  // TODO kostyl
+  // TODO Calculate max count
 
   const style = {
     backgroundColor: props.event.color,

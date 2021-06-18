@@ -1,7 +1,7 @@
 import MonthEvent from "./MonthEvent/MonthEvent";
 
 export default function MonthEventContainer(props) {
-  // Calculate max count
+  // TODO Calculate max count
   let events = Array.from(props.events)
   events.sort((el1, el2) => { return Date.parse(el1.startdate) - Date.parse(el2.startdate) })
 

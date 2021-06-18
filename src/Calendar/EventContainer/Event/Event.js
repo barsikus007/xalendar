@@ -17,12 +17,20 @@ export default function Event(props) {
     left: `${eventWidth*(eventPos-1)}%`,
     width: `calc(${eventWidth}% - 10px)`,
   }
-  const [className, setClass] = useState('event') // TODO overflow: hidden if open to stop scroll
+  const [className, setClass] = useState('event')
   return (
     <Popup
+      onOpen={() => {
+        setClass('event event__selected')
+        document.querySelector('.wrap').style.overflowY = "hidden"
+      }}
+      onClose={() => {
+        setClass('event')
+        document.querySelector('.wrap').style.overflowY = "scroll"
+      }}
       keepTooltipInside=".wrap"
       trigger={
-        <div className={className} style={style} onClick={()=>{ setClass('event') }}>
+        <div className={className} style={style}>
           <div
             className="event-text"
             title={props.event.name}
