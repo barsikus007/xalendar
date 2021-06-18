@@ -5,10 +5,13 @@ import {useState} from "react";
 import Popup from "reactjs-popup";
 
 export default function Event(props) {
+  const [className, setClass] = useState('event')
+
   const startTime = moment.duration(moment(props.event.startdate).format('HH:mm')).asMinutes()
   const endTime = moment.duration(moment(props.event.enddate).format('HH:mm')).asMinutes()
   const eventWidth = 100/props.event.overlapCount
   const eventPos = props.event.position
+
   const style = {
     backgroundColor: props.event.color,
     top: `${startTime/1440*100}%`,
@@ -16,7 +19,7 @@ export default function Event(props) {
     left: `${eventWidth*(eventPos-1)}%`,
     width: `calc(${eventWidth}% - 10px)`,
   }
-  const [className, setClass] = useState('event')
+
   return (
     <Popup
       onOpen={() => {
