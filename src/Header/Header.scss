@@ -77,7 +77,54 @@
 
     }
 
-    &__menu {
+    &-menu_admin {
+      li {list-style-type: none;
+        margin: 35px 0 0;
+        padding-left: 120px;
+
+      }
+      z-index: 999;
+      box-shadow: 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%), 0 11px 15px -7px rgb(0 0 0 / 20%);
+      position: absolute;
+      width: 470px;
+      height: 500px;
+      right: 100px;
+      top: 97px;
+      background: #342E2E;
+
+      border-radius: 8px;
+
+      h2{
+        font-family: Roboto, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 28px;
+        color: #FFFFFF;
+        padding-left: 15px;
+      }
+
+      img{
+
+        border-radius:50%;
+        border: 3px solid #544D4D;
+        height: 160px;
+      }
+      button{
+        background-color: #342E2E;
+        border-color: #dadce0;
+        color: #FFFFFF;
+        font-weight: bold;
+        font-size: 24px;
+        text-align: center;
+        text-decoration: none;
+        margin-left: 45px;
+        padding: 8px 16px;
+        size: 0;
+        cursor: pointer;
+      }
+    }
+    &-menu_user{
       li {list-style-type: none;
         margin: 35px 0 0;
         padding-left: 120px;
@@ -123,19 +170,21 @@
         size: 0;
         cursor: pointer;
       }
+
     }
   }
 }
 @media only screen and (max-width: 786px){
 .header{
-&-login{
-  img{
-    display:none;
+
+  &-login{
+    img{
+      display:none;
+    }
+    h3{
+      display:none;
+    }
   }
-  h3{
-    display:none;
-  }
-}
   &-selector{
 
     select{
