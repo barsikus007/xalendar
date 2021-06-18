@@ -9,16 +9,10 @@ export default function UserCard(props){
   const userStyle ="header-login-menu_user"
 
   return(
-    <div className={isAdmin?adminStyle:userStyle}>
+    <div className={userStyle}>
       <ul>
         <li><img src={icon} alt="icon"/></li>
         <li><h2>{props.userName}</h2></li>
-        {isAdmin &&
-          <div>
-            <button type="button" onClick={() => {toggleEventMenuVisibility()}} > Добавить ивент </button>
-            <button type="button">Создать модуль</button>
-          </div>
-        }
         <button type="button" onClick={() => {toggleAuthenticationVisibility()}}>
           Сменить пользователя
         </button>

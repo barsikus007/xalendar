@@ -9,13 +9,13 @@ export default function Login() {
   const [isAuthenticationMenuOpen,setAuthenticationMenuOpen] = useState(false);
 
   const modalRef = useRef(null);
-  const createEventMenuRef = useRef(null);
+
   const authenticationMenuRef = useRef(null);
 
   const userName = "Иванов И.И.";
 
   useOnClickOutside(modalRef, () => setModalOpen(false));
-  useOnClickOutside(createEventMenuRef, () => setCreateEventMenuOpen(false));
+
   useOnClickOutside(authenticationMenuRef, ()=> setAuthenticationMenuOpen(false))
 
   const toggleUserCardVisibility =() => {
@@ -31,20 +31,11 @@ export default function Login() {
         <UserCard userName={userName} setAuthenticationMenuState={setAuthenticationMenuOpen} />
       </div>
       }
-
-      {isCreateEventMenuOpen &&
-      <div className="header-login-event-container" ref={createEventMenuRef}>
-        <CreateEventMenu sideMenuState={isCreateEventMenuOpen} setSideMenuState={setCreateEventMenuOpen} />
-      </div>
-      }
-
       {isAuthenticationMenuOpen &&
       <div ref={authenticationMenuRef} className="header-login-authentication" >
         <UserAuthentication authenticationMenuState={isAuthenticationMenuOpen} setAuthenticationMenuState={setAuthenticationMenuOpen}/>
       </div>
       }
-
-
     </div>
   );
 }

@@ -9,6 +9,8 @@ import useOnClickOutside from "../../Header/Utilities/useOnClickOutside";
 
 export default function Pagination(props) {
   let name
+  const isAdmin =true
+  const [isCreateEventMenuOpen, setCreateEventMenuOpen] = useState(false);
 
   const prevPage = function () {
     props.setCurrentDate(moment(props.currentDate).add(-1, `${props.type}s`))
@@ -16,6 +18,15 @@ export default function Pagination(props) {
   const nextPage = function () {
     props.setCurrentDate(moment(props.currentDate).add(1, `${props.type}s`))
   }
+
+  const toggleCreateEventMenuVisibility =() =>{
+    setCreateEventMenuOpen((visible)=>!visible)
+  }
+
+  const createEventMenuRef = useRef(null);
+
+  useOnClickOutside(createEventMenuRef, () => setCreateEventMenuOpen(false));
+
 
   if (props.type === TYPES.week) {
     const startMonth = moment(props.start).format("MMMM")
@@ -42,6 +53,19 @@ export default function Pagination(props) {
         <Fab color="primary" aria-label="Prev" size="small" onClick={nextPage}><NavigateNext /></Fab>
       </div>
       <div className="calendar-pagination-name">{name}</div>
+      {isAdmin &&
+          <div>
+            <Fab color="primary" aria-label="Add" size="small" onClick={() => {toggleCreateEventMenuVisibility()}}><Add /></Fab>
+
+            <button type="button">Создать модуль</button>
+          </div>
+        }
+        {isCreateEventMenuOpen &&
+      <div className="header-login-event-container" ref={createEventMenuRef}>
+        <CreateEventMenu sideMenuState={isCreateEventMenuOpen} setSideMenuState={setCreateEventMenuOpen} />
+      </div>
+      }
+
     </div>
   )
 }
