@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from 'moment';
 
 export const TYPES = {week: 'week', day: 'day', month: 'month'}
 
@@ -26,4 +26,4 @@ export const getMonth = (date) => {
   ]
 }
 
-export const getNowMinutes = () => moment.duration(moment().format("HH:mm")).asMinutes()
+export const getNowMinutes = () => moment.duration(moment().format('HH:mm')).asMinutes()

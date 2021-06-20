@@ -1,5 +1,5 @@
-import MonthDay from "../MonthDay/MonthDay";
-import moment from "moment";
+import MonthDay from '../MonthDay/MonthDay';
+import moment from 'moment';
 
 export default function MonthWeek(props) {
   const eventsByDay = {}
@@ -20,7 +20,7 @@ export default function MonthWeek(props) {
   }
 
   return (
-      <div className="calendar-month-week">
+      <div className='calendar-month-week'>
         {week}
       </div>
   )

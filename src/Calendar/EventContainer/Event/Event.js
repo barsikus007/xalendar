@@ -1,8 +1,8 @@
 import './Event.sass'
-import EventModal from "./EventModal/EventModal";
-import moment from "moment";
-import {useState} from "react";
-import Popup from "reactjs-popup";
+import EventModal from './EventModal/EventModal';
+import moment from 'moment';
+import {useState} from 'react';
+import Popup from 'reactjs-popup';
 
 export default function Event(props) {
   const [className, setClass] = useState('event')
@@ -24,35 +24,35 @@ export default function Event(props) {
     <Popup
       onOpen={() => {
         setClass('event event__selected')
-        document.querySelector('.scroll-wrap').style.overflowY = "hidden"
+        document.querySelector('.scroll-wrap').style.overflowY = 'hidden'
       }}
       onClose={() => {
         setClass('event')
-        document.querySelector('.scroll-wrap').style.overflowY = "scroll"
+        document.querySelector('.scroll-wrap').style.overflowY = 'scroll'
       }}
-      keepTooltipInside=".scroll-wrap"
+      keepTooltipInside='.scroll-wrap'
       trigger={
         <div className={className} style={style}>
           <div
-            className="event-text"
+            className='event-text'
             title={props.event.name}
           >
             {props.event.name}
           </div>
           <div
-            className="event-text"
+            className='event-text'
             title={props.event.theme}
           >
             {props.event.theme}
           </div>
           <div
-            className="event-text"
+            className='event-text'
             title={props.event.aud}
           >
             {props.event.aud}
           </div>
           <div
-            className="event-text"
+            className='event-text'
             title={`${moment(props.event.startdate).format('HH:mm')}-${moment(props.event.enddate).format('HH:mm')}`}
           >
             {moment(props.event.startdate).format('HH:mm')}-{moment(props.event.enddate).format('HH:mm')}

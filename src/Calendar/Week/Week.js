@@ -1,8 +1,8 @@
-import Day from "../Day/Day";
-import Timetable from "../Timetable/Timetable";
-import moment from "moment";
-import useFetch from "react-fetch-hook";
-import {EventService} from "../../Service";
+import Day from '../Day/Day';
+import Timetable from '../Timetable/Timetable';
+import moment from 'moment';
+import useFetch from 'react-fetch-hook';
+import {EventService} from '../../Service';
 
 export default function Week(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(EventService.getEvents(props.start, props.end))
@@ -27,7 +27,7 @@ export default function Week(props) {
   if (!!el) el.scrollTop = 1000
 
   return (
-    <div className="calendar-week">
+    <div className='calendar-week'>
       <Timetable />
       {Array.from({length: 7}, (x, n) => {
         const day = moment(props.start).add(n, 'days').format('YYYY-MM-DD')

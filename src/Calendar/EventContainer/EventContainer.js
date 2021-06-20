@@ -1,8 +1,8 @@
-import "./EventContainer.sass"
-import Event from "./Event/Event";
-import moment from "moment";
-import RedLine from "./RedLine/RedLine";
-import {useEffect, useState} from "react";
+import './EventContainer.sass'
+import Event from './Event/Event';
+import moment from 'moment';
+import RedLine from './RedLine/RedLine';
+import {useEffect, useState} from 'react';
 
 export default function EventContainer(props) {
   const [redline, setRedline] = useState(moment().isSame(moment(props.date), 'day'))
@@ -45,7 +45,7 @@ export default function EventContainer(props) {
   })
 
   return (
-    <div className="calendar-event-container">
+    <div className='calendar-event-container'>
       {events.map((x, n) => <Event key={n} event={x} />)}
       {(redline) ? <RedLine /> : null}
     </div>

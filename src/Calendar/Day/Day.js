@@ -1,7 +1,7 @@
 import Timeslot from '../Timeslot/Timeslot';
-import EventContainer from "../EventContainer/EventContainer";
-import useFetch from "react-fetch-hook";
-import {EventService} from "../../Service";
+import EventContainer from '../EventContainer/EventContainer';
+import useFetch from 'react-fetch-hook';
+import {EventService} from '../../Service';
 
 export default function Day(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(
@@ -23,7 +23,7 @@ export default function Day(props) {
   }
 
   return (
-    <div className="calendar-day">
+    <div className='calendar-day'>
       {Array.from({length: 24}, (x, n) => <Timeslot key={n} />)}
       <EventContainer events={events} date={props.day} />
     </div>

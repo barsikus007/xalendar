@@ -1,11 +1,11 @@
 import './Calendar.scss';
-import Day from "./Day/Day";
-import Week from "./Week/Week";
-import Month from "./Month/Month";
-import Timetable from "./Timetable/Timetable";
-import Toolbar from "./Toolbar/Toolbar";
-import CalendarHeader from "./CalendarHeader/CalendarHeader";
-import {getWeek, getMonth, TYPES} from "../Utils";
+import Day from './Day/Day';
+import Week from './Week/Week';
+import Month from './Month/Month';
+import Timetable from './Timetable/Timetable';
+import Toolbar from './Toolbar/Toolbar';
+import CalendarHeader from './CalendarHeader/CalendarHeader';
+import {getWeek, getMonth, TYPES} from '../Utils';
 
 export default function Calendar(props) {
   let start, end, calendar
@@ -19,17 +19,17 @@ export default function Calendar(props) {
   } else if (props.type === TYPES.day) {
     start = props.currentDate.format('YYYY-MM-DD')
     calendar = (
-      <div className="calendar-week">
+      <div className='calendar-week'>
         <Timetable />
         <Day day={props.currentDate.format('YYYY-MM-DD')} standalone />
       </div>
     )
   }
   return (
-    <div className="calendar">
+    <div className='calendar'>
       <Toolbar start={start} end={end} type={props.type} currentDate={props.currentDate} setCurrentDate={props.setCurrentDate} />
       <CalendarHeader type={props.type} start={start} />
-      <div className="scroll-wrap">
+      <div className='scroll-wrap'>
         {calendar}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import './App.sass';
-import SideMenu from "./Header/SideMenu/SideMenu";
+import SideMenu from './Header/SideMenu/SideMenu';
 import Header from './Header/Header';
 import Calendar from './Calendar/Calendar';
 import moment from 'moment';

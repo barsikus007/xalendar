@@ -1,7 +1,7 @@
-import MonthWeek from "./MonthWeek/MonthWeek";
-import moment from "moment";
-import useFetch from "react-fetch-hook";
-import {EventService} from "../../Service";
+import MonthWeek from './MonthWeek/MonthWeek';
+import moment from 'moment';
+import useFetch from 'react-fetch-hook';
+import {EventService} from '../../Service';
 
 export default function Month(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(EventService.getEvents(props.start, props.end))
@@ -24,7 +24,7 @@ export default function Month(props) {
   }
 
   return (
-    <div className="calendar-month">
+    <div className='calendar-month'>
       {Array.from({length: weeksCount}, (x, n) => {
         const week = moment(props.start).add(n, 'weeks').format('YYYY-MM-DD')
         return <MonthWeek key={week} currentDate={props.currentDate} start={week} events={eventsByWeek[week]} />
