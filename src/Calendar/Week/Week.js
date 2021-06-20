@@ -23,7 +23,7 @@ export default function Week(props) {
     })
   }
 
-  const el = document.querySelector('.wrap')
+  const el = document.querySelector('.scroll-wrap')
   if (!!el) el.scrollTop = 1000
 
   return (

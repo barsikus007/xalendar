@@ -3,13 +3,15 @@ import {EventService} from "../../../Service";
 
 export default function UserAuthentication(){
   const handleSubmit = async (event) => {
+    event.preventDefault()
     if (event.target[0].value) {
       const name = event.target[0].value
-      await EventService.getAndSetUserId(name)
+      await EventService.getAndSetUserId(name).catch(error => {
+        console.error('TODO POP-IT ERROR')
+        alert('error')
+      })
       window.location.reload()
     }
-
-    event.preventDefault()
   }
 
   return(
@@ -22,5 +24,4 @@ export default function UserAuthentication(){
       </form>
     </div>
   )
-
 }

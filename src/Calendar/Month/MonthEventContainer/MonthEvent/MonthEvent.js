@@ -15,13 +15,13 @@ export default function MonthEvent(props) {
     <Popup
       onOpen={() => {
         setClass('month-event month-event__selected')
-        document.querySelector('.wrap').style.overflowY = "hidden"
+        document.querySelector('.scroll-wrap').style.overflowY = "hidden"
       }}
       onClose={() => {
         setClass('month-event')
-        document.querySelector('.wrap').style.overflowY = "scroll"
+        document.querySelector('.scroll-wrap').style.overflowY = "scroll"
       }}
-      keepTooltipInside=".wrap"
+      keepTooltipInside=".scroll-wrap"
       trigger={
         <div className={className} style={style}>
           {moment(props.event.startdate).format('HH:mm ')}{props.event.theme}

@@ -18,7 +18,7 @@ export default function Day(props) {
       events = eventsRaw
     }
 
-    const el = document.querySelector('.wrap')
+    const el = document.querySelector('.scroll-wrap')
     if (!!el) el.scrollTop = 1000
   }
 

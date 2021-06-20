@@ -127,7 +127,7 @@
     //background-color: white;
   }
 
-  .wrap {
+  .scroll-wrap {
     position: relative;
     overflow-y: scroll;
     height: 85vh;
@@ -138,4 +138,9 @@
       display: none;
     }
   }
+}
+
+.MuiFab-primary {
+  background-color: white !important;
+  box-shadow: none !important;
 }

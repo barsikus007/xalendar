@@ -24,13 +24,13 @@ export default function Event(props) {
     <Popup
       onOpen={() => {
         setClass('event event__selected')
-        document.querySelector('.wrap').style.overflowY = "hidden"
+        document.querySelector('.scroll-wrap').style.overflowY = "hidden"
       }}
       onClose={() => {
         setClass('event')
-        document.querySelector('.wrap').style.overflowY = "scroll"
+        document.querySelector('.scroll-wrap').style.overflowY = "scroll"
       }}
-      keepTooltipInside=".wrap"
+      keepTooltipInside=".scroll-wrap"
       trigger={
         <div className={className} style={style}>
           <div

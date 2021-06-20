@@ -1,21 +1,46 @@
 export class EventService {
   static getEvents(from, to) {
     let userId = localStorage.getItem('userId')
-    // console.log(userId)
+    // if (userId === null) alert('Auth required')
     if (userId === null) userId = 256720
-    return `http://165.22.72.61/events?userId=${userId}&startDate=${from}&endDate=${to}`
+    return `http://165.22.72.61/student/events?userId=${userId}&startDate=${from}&endDate=${to}`
+  }
+
+  static async getTeacherEvents(teacherId, from, to) {
+    return `http://165.22.72.61/teacher/events?userId=${teacherId}&startDate=${from}&endDate=${to}`
+  }
+
+  static async getModuleEvents(moduleId, from, to) {
+    return `http://165.22.72.61/module/events?userId=${moduleId}&startDate=${from}&endDate=${to}`
+  }
+
+  static async createEvent(eventObj) {
+    const response = await fetch(`http://165.22.72.61/event`, {
+      method: 'POST',
+      body: JSON.stringify(eventObj)
+    })
+    return await response.json()
+  }
+
+  static async editEvent(eventObj) {
+    const response = await fetch(`http://165.22.72.61/event/${eventObj.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(eventObj)
+    })
+    return await response.json()
+  }
+
+  static async deleteEvent(eventId) {
+    const response = await fetch(`http://165.22.72.61/event/${eventId}`, {
+      method: 'DELETE',
+    })
+    return await response.json()
   }
 
   static async getAndSetUserId(name) {
-    try {
-      const response = await fetch(`http://165.22.72.61/user/${name}`)
-      const data = await response.json()
-      localStorage.setItem('userId', data.userid)
-    } catch (e) {
-      console.log('error')
-      console.log(e)
-      console.log(e.name)
-      localStorage.setItem('userId', 256720)
-    }
+    const response = await fetch(`http://165.22.72.61/user/${name}`)
+    const data = await response.json()
+    localStorage.setItem('userId', data.userid)
+    localStorage.setItem('userName', name)
   }
 }

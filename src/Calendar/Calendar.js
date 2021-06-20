@@ -29,7 +29,7 @@ export default function Calendar(props) {
     <div className="calendar">
       <Toolbar start={start} end={end} type={props.type} currentDate={props.currentDate} setCurrentDate={props.setCurrentDate} />
       <CalendarHeader type={props.type} start={start} />
-      <div className="wrap">
+      <div className="scroll-wrap">
         {calendar}
       </div>
     </div>
