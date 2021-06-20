@@ -12,7 +12,7 @@ export default function CalendarHeader(props) {
           {moment(props.start).add(x, 'days').format('ddd')}
         </div>
         {(props.type === 'week') ?
-          <a href={'/day' + moment(props.day).format('/YYYY/MM/DD')}>
+          <a href={'/day' + moment(props.start).add(x, 'days').format('/YYYY/MM/DD')}>
             {moment(props.start).add(x, 'days').format('DD')}
           </a> :
           (props.type === 'day') ?

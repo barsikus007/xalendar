@@ -7,11 +7,11 @@ import {EventService} from "../../Service";
 export default function Week(props) {
   const { isLoading, data: eventsRaw, error } = useFetch(EventService.getEvents(props.start, props.end))
 
-  const eventsByDate = {}
+  const eventsByDay = {}
 
   for (const x of Array(7).keys()) {
     const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
-    eventsByDate[day] = []
+    eventsByDay[day] = []
   }
 
   if (error) {
@@ -19,7 +19,7 @@ export default function Week(props) {
   } else if (!isLoading) {
     Array.from(eventsRaw).forEach((event) => {
       const eventStart = moment(event.startdate).format('YYYY-MM-DD')
-      if (eventStart in eventsByDate) eventsByDate[eventStart].push(event)
+      if (eventStart in eventsByDay) eventsByDay[eventStart].push(event)
     })
   }
 
@@ -31,7 +31,7 @@ export default function Week(props) {
       <Timetable />
       {Array.from({length: 7}, (x, n) => {
         const day = moment(props.start).add(n, 'days').format('YYYY-MM-DD')
-        return <Day key={day} day={day} events={eventsByDate[day]} />
+        return <Day key={day} day={day} events={eventsByDay[day]} />
       })}
     </div>
   )

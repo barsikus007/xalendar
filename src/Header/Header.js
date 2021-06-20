@@ -3,7 +3,6 @@ import Title from './Title/Title';
 import Selector from './Selector/Selector';
 import Login from './Login/Login'
 
-
 export default function Header(props) {
   return(
     <header className="section-outer header">
