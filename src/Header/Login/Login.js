@@ -14,7 +14,7 @@ export default function Login() {
   const authenticationMenuRef = useRef(null);
 
   const _userName = localStorage.getItem('userName');
-  const userName = (typeof _userName) ? shortName(_userName) : 'Log In';
+  const userName = (!!_userName) ? shortName(_userName) : 'Log In';
 
   useOnClickOutside(modalRef, () => setModalOpen(false));
 

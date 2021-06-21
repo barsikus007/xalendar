@@ -16,9 +16,9 @@ export default function DeleteEventModal(props) {
         </Fab>
       }>
       <div className='edit-event-popup'>
-        <h3>Delete Ивент</h3>
-        <button type="button">Delete ивент</button>
-        <button type="button">net</button>
+        <h3>Are you sure?</h3>
+        <button type="button">Yes</button>
+        <button type="button">No</button>
       </div>
     </Popup>
   )
