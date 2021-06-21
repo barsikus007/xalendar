@@ -1,16 +1,19 @@
-import Day from '../Day/Day';
-import Timetable from '../Timetable/Timetable';
-import moment from 'moment';
-import useFetch from 'react-fetch-hook';
-import {Service} from '../../Service';
+import Day from '../Day/Day'
+import Timetable from '../Timetable/Timetable'
+import moment from 'moment'
+import useFetch from 'react-fetch-hook'
+import {Service} from '../../Service'
+import {getWeek} from '../../Utils'
 
 export default function Week(props) {
-  const { isLoading, data: eventsRaw, error } = useFetch(Service.getEvents(props.start, props.end))
+  const [startOfWeek, endOfWeek] = getWeek(props.currentDate)
+  
+  const { isLoading, data: eventsRaw, error } = useFetch(Service.getEvents(startOfWeek, endOfWeek))
 
   const eventsByDay = {}
 
   for (const x of Array(7).keys()) {
-    const day = moment(props.start).add(x, 'days').format('YYYY-MM-DD')
+    const day = moment(startOfWeek).add(x, 'days').format('YYYY-MM-DD')
     eventsByDay[day] = []
   }
 
@@ -30,7 +33,7 @@ export default function Week(props) {
     <div className='calendar-week'>
       <Timetable />
       {Array.from({length: 7}, (x, n) => {
-        const day = moment(props.start).add(n, 'days').format('YYYY-MM-DD')
+        const day = moment(startOfWeek).add(n, 'days').format('YYYY-MM-DD')
         return <Day key={day} day={day} events={eventsByDay[day]} />
       })}
     </div>
