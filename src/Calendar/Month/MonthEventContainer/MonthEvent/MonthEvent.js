@@ -1,6 +1,6 @@
 import './MonthEvent.sass'
 import moment from 'moment';
-import EventModal from '../../../EventContainer/Event/EventModal/EventModal';
+import EventModal from '../../../../Modals/EventModal';
 import Popup from 'reactjs-popup';
 import {useState} from 'react';
 

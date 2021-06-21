@@ -1,10 +1,10 @@
 import MonthWeek from './MonthWeek/MonthWeek';
 import moment from 'moment';
 import useFetch from 'react-fetch-hook';
-import {EventService} from '../../Service';
+import {Service} from '../../Service';
 
 export default function Month(props) {
-  const { isLoading, data: eventsRaw, error } = useFetch(EventService.getEvents(props.start, props.end))
+  const { isLoading, data: eventsRaw, error } = useFetch(Service.getEvents(props.start, props.end))
 
   const eventsByWeek = {}
   const weeksCount = (moment.duration(moment(props.end).diff(moment(props.start))).asDays()+1)/7 | 0

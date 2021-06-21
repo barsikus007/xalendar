@@ -1,4 +1,4 @@
-export class EventService {
+export class Service {
   static getEvents(from, to) {
     let userId = localStorage.getItem('userId')
     // if (userId === null) alert('Auth required')
@@ -6,12 +6,26 @@ export class EventService {
     return `http://165.22.72.61/student/events?userId=${userId}&startDate=${from}&endDate=${to}`
   }
 
-  static async getTeacherEvents(teacherId, from, to) {
+  static getTeacherEvents(teacherId, from, to) {
     return `http://165.22.72.61/teacher/events?userId=${teacherId}&startDate=${from}&endDate=${to}`
   }
 
-  static async getModuleEvents(moduleId, from, to) {
+  static getModuleEvents(moduleId, from, to) {
     return `http://165.22.72.61/module/events?userId=${moduleId}&startDate=${from}&endDate=${to}`
+  }
+
+  static async getAllViews() {
+    // const responseStudents = await fetch(`http://165.22.72.61/students`)
+    // const dataStudents = await responseStudents.json()
+    const responseTeachers = await fetch(`http://165.22.72.61/teachers`)
+    const dataTeachers = await responseTeachers.json()
+    // const responseModules = await fetch(`http://165.22.72.61/modules`)
+    // const dataModules = await responseModules.json()
+    return {
+      // students: dataStudents,
+      teachers: dataTeachers,
+      // modules: dataModules,
+    }
   }
 
   static async createEvent(eventObj) {

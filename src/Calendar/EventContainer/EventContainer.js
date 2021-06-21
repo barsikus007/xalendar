@@ -8,6 +8,12 @@ export default function EventContainer(props) {
   const [redline, setRedline] = useState(moment().isSame(moment(props.date), 'day'))
   const events = Array.from(props.events)
   const timetable = Array.from({length: 1440}, () => [])
+  
+  const isAdmin = true
+  const handleClick = () => {
+    isAdmin && console.log('aboba')
+  }
+
 
   useEffect(() => {
     const interval = setInterval(
@@ -45,7 +51,7 @@ export default function EventContainer(props) {
   })
 
   return (
-    <div className='calendar-event-container'>
+    <div className='calendar-event-container' onClick={handleClick}>
       {events.map((x, n) => <Event key={n} event={x} />)}
       {(redline) ? <RedLine /> : null}
     </div>

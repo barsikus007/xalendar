@@ -1,10 +1,13 @@
-import {Info, QueryBuilder, Assignment, Description, Person, ViewModule, LocationOn} from '@material-ui/icons';
-import moment from 'moment';
+import './index.sass'
+import {Info, QueryBuilder, Assignment, Description, Person, ViewModule, LocationOn} from '@material-ui/icons'
+import moment from 'moment'
+import EventModalToolbar from "./EventModalToolbar"
 
 export default function EventModal(props) {
   const style = { fontSize: 20 }
   return (
     <div className='event-popup'>
+      <EventModalToolbar />
       <div className='event-popup-row'>
         <Info style={style} />
         <div>

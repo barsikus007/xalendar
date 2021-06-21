@@ -1,5 +1,5 @@
 import './Event.sass'
-import EventModal from './EventModal/EventModal';
+import EventModal from '../../../Modals/EventModal';
 import moment from 'moment';
 import {useState} from 'react';
 import Popup from 'reactjs-popup';
