@@ -1,6 +1,7 @@
 import {FormControl, InputLabel, ListSubheader, MenuItem, Select} from '@material-ui/core'
 import {Service} from "../../../../Service"
 import {useAsync} from "react-async-hook"
+import {shortName} from "../../../../Utils";
 
 export default function ViewAsList(props) {
   const {loading, error, result} = useAsync(Service.getAllViews, [])
@@ -9,10 +10,19 @@ export default function ViewAsList(props) {
     console.log(e.target) // TODO listsubheader
     console.log(e.target.value)
     console.log(e)
+    if (e.target.value) {
+
+    }
   }
 
   if (error) {
     console.error('TODO POP-IT ERROR')
+  }
+
+  if (result) {
+    result.teachers.sort((user1, user2) => user1.fullname.localeCompare(user2.fullname))
+    result.students.sort((user1, user2) => user1.fullname.localeCompare(user2.fullname))
+    // result.modules.sort((user1, user2) => user1.fullname.localeCompare(user2.fullname))
   }
 
   return (<div>
@@ -23,8 +33,11 @@ export default function ViewAsList(props) {
           <em>Default</em>
         </MenuItem>
         <ListSubheader inset value={-1}>Student</ListSubheader>
-        <MenuItem value={256720} name='student'>Решетников В.П.</MenuItem>
-        <MenuItem value={269788} name='student'>Дьяков С.В.</MenuItem>
+          {loading && <MenuItem disabled>Loading...</MenuItem>}
+          {error && <MenuItem disabled>Error...</MenuItem>}
+          {!error && result && result.students.map(el => {
+            return <MenuItem key={el.id} value={el.id} name='student'>{shortName(el.fullname)}</MenuItem>
+          })}
         <ListSubheader inset value={-2}>Teacher</ListSubheader>
           {loading && <MenuItem disabled>Loading...</MenuItem>}
           {error && <MenuItem disabled>Error...</MenuItem>}

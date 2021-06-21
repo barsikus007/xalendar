@@ -3,10 +3,9 @@ import {Service} from '../../Service'
 export default function EventModalDelete(props) {
   const handleClick = async () => {
     const response = await Service.deleteEvent(props.event.id)
-    console.log(response)
-    window.location.reload()
-    props.setEvent({})
-    props.setIsDelete(false)
+    if (response === 204) {
+      window.location.reload()
+    } else alert('Error')
   }
 
   return (

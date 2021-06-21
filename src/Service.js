@@ -15,21 +15,21 @@ export class Service {
   }
 
   static async getAllViews() {
-    // const responseStudents = await fetch(`http://165.22.72.61/students`)
-    // const dataStudents = await responseStudents.json()
-    const responseTeachers = await fetch(`http://165.22.72.61/teachers`)
+    const responseStudents = await fetch(`http://165.22.72.61/all/students`)
+    const dataStudents = await responseStudents.json()
+    const responseTeachers = await fetch(`http://165.22.72.61/all/teachers`)
     const dataTeachers = await responseTeachers.json()
     // const responseModules = await fetch(`http://165.22.72.61/modules`)
     // const dataModules = await responseModules.json()
     return {
-      // students: dataStudents,
+      students: dataStudents,
       teachers: dataTeachers,
       // modules: dataModules,
     }
   }
 
   static async createEvent(eventObj) {
-    const response = await fetch(`http://165.22.72.61/event`, {
+    const response = await fetch(`http://165.22.72.61/module/${'Мел'}/event`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -56,11 +56,11 @@ export class Service {
     const response = await fetch(`http://165.22.72.61/event/${eventId}`, {
       method: 'DELETE',
     })
-    return await response.json()
+    return response.status
   }
 
   static async getAndSetUserId(name) {
-    const response = await fetch(`http://165.22.72.61/user/${name}`)
+    const response = await fetch(`http://165.22.72.61/student?fullName=${name}`)
     const data = await response.json()
     localStorage.setItem('userId', data.userid)
     localStorage.setItem('userName', name)
