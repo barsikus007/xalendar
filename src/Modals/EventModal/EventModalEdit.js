@@ -14,12 +14,14 @@ export default function EventModalEdit(props) {
       theme: rawData[1],
       teacher: rawData[2],
       place: rawData[3],
-      startdate: moment(`${rawData[4]} ${rawData[5]}`).toISOString(),
-      enddate: moment(`${rawData[6]} ${rawData[7]}`).toISOString(),
+      startDate: moment(`${rawData[4]} ${rawData[5]}`).toISOString(),
+      endDate: moment(`${rawData[6]} ${rawData[7]}`).toISOString(),
     }
     console.log(data)
     const response = await Service.editEvent(props.event.id, data)
     console.log(response)
+    data.startdate = data.startDate
+    data.enddate = data.endDate
     props.setEvent(Object.assign({}, props.event, data))
     props.setIsEdit(false)
   }
