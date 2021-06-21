@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from 'moment'
 
 export const TYPES = {week: 'week', day: 'day', month: 'month'}
 
@@ -27,3 +27,8 @@ export const getMonth = (date) => {
 }
 
 export const getNowMinutes = () => moment.duration(moment().format('HH:mm')).asMinutes()
+
+export const shortName = (name) => {
+  const nameArr = name.split(' ')
+  return `${nameArr[0]} ${nameArr[1][0]}.${nameArr[2][0]}.`
+}

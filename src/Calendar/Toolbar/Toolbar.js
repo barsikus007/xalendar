@@ -1,17 +1,9 @@
 import './Toolbar.sass'
-import {useRef, useState} from 'react';
 import Pagination from './Pagination/Pagination';
-import CreateEventMenu from './CreateEventMenu/CreateEventMenu';
-import useOnClickOutside from '../../Header/Utilities/useOnClickOutside';
 import AdminToolbox from "./AdminToolbox";
 
 export default function Toolbar(props) {
-  const isAdmin = true
-  const [isCreateEventMenuOpen, setCreateEventMenuOpen] = useState(false)
-
-  const createEventMenuRef = useRef(null)
-
-  useOnClickOutside(createEventMenuRef, () => setCreateEventMenuOpen(false))
+  const isAdmin = (localStorage.getItem('isAdmin') === 'true')
 
   return (
     <div className='calendar-toolbar'>
@@ -21,15 +13,10 @@ export default function Toolbar(props) {
         type={props.type}
         currentDate={props.currentDate}
         setCurrentDate={props.setCurrentDate} />
-      {isAdmin &&
-        <AdminToolbox setCreateEventMenuOpen={setCreateEventMenuOpen} />
-        }
-        {isCreateEventMenuOpen &&
-      <div className='header-login-event-container' ref={createEventMenuRef}>
-        <CreateEventMenu sideMenuState={isCreateEventMenuOpen} setSideMenuState={setCreateEventMenuOpen} />
-      </div>
+      {
+        isAdmin &&
+        <AdminToolbox />
       }
-
     </div>
   )
 }

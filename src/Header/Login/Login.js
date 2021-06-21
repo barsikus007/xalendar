@@ -3,6 +3,7 @@ import {useState, useRef} from "react";
 import UserCard from "./UserCard/UserCard";
 import useOnClickOutside from '../Utilities/useOnClickOutside'
 import UserAuthentication from "./UserAuthentication/UserAuthentication";
+import {shortName} from "../../Utils";
 
 export default function Login() {
   const [isModalOpen,setModalOpen] = useState(false);
@@ -12,7 +13,8 @@ export default function Login() {
 
   const authenticationMenuRef = useRef(null);
 
-  const userName = "Иванов И.И.";
+  const _userName = localStorage.getItem('userName');
+  const userName = (typeof _userName) ? shortName(_userName) : 'Log In';
 
   useOnClickOutside(modalRef, () => setModalOpen(false));
 

@@ -6,9 +6,9 @@ export default function Selector(props){
           (e) => {
             props.selectType(e.target.value)
           }}>
-          <option value="week">Неделя</option>
-          <option value="day">День</option>
-          <option value="month">Месяц</option>
+          <option value="week">Week</option>
+          <option value="day">Day</option>
+          <option value="month">Month</option>
         </select>
       </label>
     </div>

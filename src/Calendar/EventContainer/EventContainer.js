@@ -9,10 +9,10 @@ export default function EventContainer(props) {
   const events = Array.from(props.events)
   const timetable = Array.from({length: 1440}, () => [])
   
-  const isAdmin = true
-  const handleClick = () => {
-    isAdmin && console.log('aboba')
-  }
+  // const isAdmin = (localStorage.getItem('isAdmin') === 'true')
+  // const handleClick = () => {
+  //   isAdmin && console.log('aboba')
+  // }
 
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function EventContainer(props) {
   })
 
   return (
-    <div className='calendar-event-container' onClick={handleClick}>
+    <div className='calendar-event-container'>
       {events.map((x, n) => <Event key={n} event={x} />)}
       {(redline) ? <RedLine /> : null}
     </div>

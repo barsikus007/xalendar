@@ -20,6 +20,35 @@ export default function Event(props) {
     width: `calc(${eventWidth}% - 10px)`,
   }
 
+  const eventBody = (
+    <div className={className} style={style}>
+      <div
+        className='event-text'
+        title={props.event.name}
+      >
+        {props.event.name}
+      </div>
+      <div
+        className='event-text'
+        title={props.event.theme}
+      >
+        {props.event.theme}
+      </div>
+      <div
+        className='event-text'
+        title={props.event.aud}
+      >
+        {props.event.aud}
+      </div>
+      <div
+        className='event-text'
+        title={`${moment(props.event.startdate).format('HH:mm')}-${moment(props.event.enddate).format('HH:mm')}`}
+      >
+        {moment(props.event.startdate).format('HH:mm')}-{moment(props.event.enddate).format('HH:mm')}
+      </div>
+    </div>
+  )
+
   return (
     <Popup
       onOpen={() => {
@@ -31,34 +60,7 @@ export default function Event(props) {
         document.querySelector('.scroll-wrap').style.overflowY = 'scroll'
       }}
       keepTooltipInside='.scroll-wrap'
-      trigger={
-        <div className={className} style={style}>
-          <div
-            className='event-text'
-            title={props.event.name}
-          >
-            {props.event.name}
-          </div>
-          <div
-            className='event-text'
-            title={props.event.theme}
-          >
-            {props.event.theme}
-          </div>
-          <div
-            className='event-text'
-            title={props.event.aud}
-          >
-            {props.event.aud}
-          </div>
-          <div
-            className='event-text'
-            title={`${moment(props.event.startdate).format('HH:mm')}-${moment(props.event.enddate).format('HH:mm')}`}
-          >
-            {moment(props.event.startdate).format('HH:mm')}-{moment(props.event.enddate).format('HH:mm')}
-          </div>
-        </div>
-      }>
+      trigger={ eventBody }>
         <EventModal event={props.event}/>
     </Popup>
   )

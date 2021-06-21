@@ -1,23 +1,12 @@
 import './index.sass'
-import {Fab} from '@material-ui/core'
-import {Add} from '@material-ui/icons'
 import ViewAsList from './ViewAsList/ViewAsList'
+import CreateEventModal from "../../../Modals/CreateEventModal"
 
-export default function AdminToolbox(props) {
-  const toggleCreateEventMenuVisibility = () =>{
-    props.setCreateEventMenuOpen(visible=>!visible)
-  }
+export default function AdminToolbox() {
 
   return (
     <div className='admin-toolbox'>
-      <Fab
-        color='primary'
-        aria-label='Add'
-        size='small'
-        onClick={() => { toggleCreateEventMenuVisibility() }}>
-        <Add style={{ color: 'black' }} />
-      </Fab>
-
+      <CreateEventModal/>
       <ViewAsList />
     </div>
   )

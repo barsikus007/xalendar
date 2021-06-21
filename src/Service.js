@@ -31,14 +31,22 @@ export class Service {
   static async createEvent(eventObj) {
     const response = await fetch(`http://165.22.72.61/event`, {
       method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(eventObj)
     })
     return await response.json()
   }
 
-  static async editEvent(eventObj) {
-    const response = await fetch(`http://165.22.72.61/event/${eventObj.id}`, {
+  static async editEvent(eventId, eventObj) {
+    const response = await fetch(`http://165.22.72.61/event/${eventId}`, {
       method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(eventObj)
     })
     return await response.json()
