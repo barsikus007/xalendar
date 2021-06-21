@@ -5,9 +5,8 @@ import Month from './Month/Month'
 import Timetable from './Timetable/Timetable'
 import Toolbar from './Toolbar/Toolbar'
 import CalendarHeader from './CalendarHeader/CalendarHeader'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import {getWeek, getMonth, TYPES} from '../Utils'
-import moment from "moment";
 
 export default function Calendar(props) {
   let start, end
