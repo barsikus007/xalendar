@@ -42,12 +42,12 @@ export default function CreateEventModal(props) {
         <input type="text" placeholder="Aud"/>
         <input type="text" placeholder="Teacher"/>
         <p>
-          <input type="date" id="date" name="date"/>
-          <input type="time" id="time" name="time"/>
+          <input type="date" name="date"/>
+          <input type="time" name="time"/>
         </p>
         <p>
-          <input type="date" id="date" name="date"/>
-          <input type="time" id="time" name="time"/>
+          <input type="date" name="date"/>
+          <input type="time" name="time"/>
         </p>
         <button type="submit">Add</button>
       </form>
